@@ -1,0 +1,243 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4CE3AD165CB7E30043DF4A /* Foundation.framework */; };
+		8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; };
+		8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8A4CE3A8165CB7E30043DF4A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4CE3AD165CB7E30043DF4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8A4CE3B1165CB7E30043DF4A /* GBHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Prefix.pch"; sourceTree = "<group>"; };
+		8A4CE3B2165CB7E30043DF4A /* GBHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBHUD.h; sourceTree = "<group>"; };
+		8A4CE3B4165CB7E30043DF4A /* GBHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBHUD.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A4CE3A7165CB7E30043DF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A4CE39F165CB7E30043DF4A = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3AF165CB7E30043DF4A /* GBHUD */,
+				8A4CE3AC165CB7E30043DF4A /* Frameworks */,
+				8A4CE3AB165CB7E30043DF4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A4CE3AB165CB7E30043DF4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A4CE3AC165CB7E30043DF4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3AD165CB7E30043DF4A /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A4CE3AF165CB7E30043DF4A /* GBHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
+				8A4CE3B4165CB7E30043DF4A /* GBHUD.m */,
+				8A4CE3B0165CB7E30043DF4A /* Supporting Files */,
+			);
+			path = GBHUD;
+			sourceTree = "<group>";
+		};
+		8A4CE3B0165CB7E30043DF4A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3B1165CB7E30043DF4A /* GBHUD-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A4CE3A9165CB7E30043DF4A /* GBHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A4CE3B8165CB7E30043DF4A /* Build configuration list for PBXNativeTarget "GBHUD" */;
+			buildPhases = (
+				8A4CE3A6165CB7E30043DF4A /* Sources */,
+				8A4CE3A7165CB7E30043DF4A /* Frameworks */,
+				8A4CE3A8165CB7E30043DF4A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GBHUD;
+			productName = GBHUD;
+			productReference = 8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A4CE3A1165CB7E30043DF4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Goonbee;
+			};
+			buildConfigurationList = 8A4CE3A4165CB7E30043DF4A /* Build configuration list for PBXProject "GBHUD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8A4CE39F165CB7E30043DF4A;
+			productRefGroup = 8A4CE3AB165CB7E30043DF4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A4CE3A9165CB7E30043DF4A /* GBHUD */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A4CE3A6165CB7E30043DF4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8A4CE3B6165CB7E30043DF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8A4CE3B7165CB7E30043DF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A4CE3B9165CB7E30043DF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GBHUD.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUD/GBHUD-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8A4CE3BA165CB7E30043DF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GBHUD.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUD/GBHUD-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A4CE3A4165CB7E30043DF4A /* Build configuration list for PBXProject "GBHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A4CE3B6165CB7E30043DF4A /* Debug */,
+				8A4CE3B7165CB7E30043DF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A4CE3B8165CB7E30043DF4A /* Build configuration list for PBXNativeTarget "GBHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A4CE3B9165CB7E30043DF4A /* Debug */,
+				8A4CE3BA165CB7E30043DF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A4CE3A1165CB7E30043DF4A /* Project object */;
+}

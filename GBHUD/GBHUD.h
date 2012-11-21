@@ -45,7 +45,10 @@ typedef enum {
 
 +(GBHUD *)sharedHUD;
 
--(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated;//add queieing up of HUD's
+//add queieing up of HUD's
+//add bg view dimming
+
+-(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated;
 -(void)showHUDWithImage:(UIImage *)image text:(NSString *)text animated:(BOOL)animated;
 -(void)showHUDWithView:(UIView *)symbolView text:(NSString *)text animated:(BOOL)animated;
 -(void)dismissHUDAnimated:(BOOL)animated;

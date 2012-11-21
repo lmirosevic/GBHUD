@@ -12,6 +12,18 @@
 		8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD.m */; };
 		8AA7A576165CBAEF005601FC /* GBHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A575165CBAEF005601FC /* GBHUDView.m */; };
 		8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */; };
+		8AA7A5C7165D051C005601FC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
+		8AA7A5CD165D051C005601FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A5CB165D051C005601FC /* InfoPlist.strings */; };
+		8AA7A5D2165D057C005601FC /* GBHUDSymbolSleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */; };
+		8AA7A5D3165D057C005601FC /* GBHUDSymbolSleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */; };
+		8AA7A5D4165D057C005601FC /* GBHUDSymbolSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */; };
+		8AA7A5D5165D057C005601FC /* GBHUDSymbolSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */; };
+		8AA7A5D6165D057C005601FC /* GBHUDSymbolError.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */; };
+		8AA7A5D7165D057C005601FC /* GBHUDSymbolError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */; };
+		8AA7A5D8165D057C005601FC /* GBHUDSymbolExplosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */; };
+		8AA7A5D9165D057C005601FC /* GBHUDSymbolExplosion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */; };
+		8AA7A5DA165D057C005601FC /* GBHUDSymbolInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */; };
+		8AA7A5DB165D057C005601FC /* GBHUDSymbolInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +49,21 @@
 		8AA7A575165CBAEF005601FC /* GBHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDView.m; sourceTree = "<group>"; };
 		8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDBackgroundView.h; sourceTree = "<group>"; };
 		8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDBackgroundView.m; sourceTree = "<group>"; };
+		8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolSleep@2x.png"; sourceTree = "<group>"; };
+		8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolSuccess@2x.png"; sourceTree = "<group>"; };
+		8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolError.png; sourceTree = "<group>"; };
+		8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolExplosion.png; sourceTree = "<group>"; };
+		8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolInfo.png; sourceTree = "<group>"; };
+		8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolInfo@2x.png"; sourceTree = "<group>"; };
+		8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSleep.png; sourceTree = "<group>"; };
+		8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolError@2x.png"; sourceTree = "<group>"; };
+		8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolExplosion@2x.png"; sourceTree = "<group>"; };
+		8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSuccess.png; sourceTree = "<group>"; };
+		8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GBHUDResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AA7A5C6165D051C005601FC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		8AA7A5CA165D051C005601FC /* GBHUDResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUDResources-Info.plist"; sourceTree = "<group>"; };
+		8AA7A5CC165D051C005601FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8AA7A5CE165D051C005601FC /* GBHUDResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUDResources-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +75,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8AA7A5C2165D051C005601FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AA7A5C7165D051C005601FC /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3AF165CB7E30043DF4A /* GBHUD */,
+				8AA7A5C8165D051C005601FC /* GBHUDResources */,
 				8A4CE3AC165CB7E30043DF4A /* Frameworks */,
 				8A4CE3AB165CB7E30043DF4A /* Products */,
 			);
@@ -64,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */,
+				8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3AD165CB7E30043DF4A /* Foundation.framework */,
+				8AA7A5C6165D051C005601FC /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,12 +117,8 @@
 		8A4CE3AF165CB7E30043DF4A /* GBHUD */ = {
 			isa = PBXGroup;
 			children = (
-				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
-				8A4CE3B4165CB7E30043DF4A /* GBHUD.m */,
-				8AA7A574165CBAEF005601FC /* GBHUDView.h */,
-				8AA7A575165CBAEF005601FC /* GBHUDView.m */,
-				8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */,
-				8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */,
+				8AA7A58F165CFA2B005601FC /* Source */,
+				8AA7A58E165CFA1E005601FC /* Symbols */,
 				8A4CE3B0165CB7E30043DF4A /* Supporting Files */,
 			);
 			path = GBHUD;
@@ -94,6 +128,54 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3B1165CB7E30043DF4A /* GBHUD-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8AA7A58E165CFA1E005601FC /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */,
+				8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */,
+				8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */,
+				8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */,
+				8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */,
+				8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */,
+				8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */,
+				8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */,
+				8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */,
+				8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */,
+			);
+			name = Symbols;
+			sourceTree = "<group>";
+		};
+		8AA7A58F165CFA2B005601FC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
+				8A4CE3B4165CB7E30043DF4A /* GBHUD.m */,
+				8AA7A574165CBAEF005601FC /* GBHUDView.h */,
+				8AA7A575165CBAEF005601FC /* GBHUDView.m */,
+				8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */,
+				8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		8AA7A5C8165D051C005601FC /* GBHUDResources */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7A5C9165D051C005601FC /* Supporting Files */,
+			);
+			path = GBHUDResources;
+			sourceTree = "<group>";
+		};
+		8AA7A5C9165D051C005601FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7A5CA165D051C005601FC /* GBHUDResources-Info.plist */,
+				8AA7A5CB165D051C005601FC /* InfoPlist.strings */,
+				8AA7A5CE165D051C005601FC /* GBHUDResources-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -118,6 +200,23 @@
 			productReference = 8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		8AA7A5C4165D051C005601FC /* GBHUDResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources" */;
+			buildPhases = (
+				8AA7A5C1165D051C005601FC /* Sources */,
+				8AA7A5C2165D051C005601FC /* Frameworks */,
+				8AA7A5C3165D051C005601FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GBHUDResources;
+			productName = GBHUDResources;
+			productReference = 8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -140,9 +239,31 @@
 			projectRoot = "";
 			targets = (
 				8A4CE3A9165CB7E30043DF4A /* GBHUD */,
+				8AA7A5C4165D051C005601FC /* GBHUDResources */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8AA7A5C3165D051C005601FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AA7A5CD165D051C005601FC /* InfoPlist.strings in Resources */,
+				8AA7A5D2165D057C005601FC /* GBHUDSymbolSleep.png in Resources */,
+				8AA7A5D3165D057C005601FC /* GBHUDSymbolSleep@2x.png in Resources */,
+				8AA7A5D4165D057C005601FC /* GBHUDSymbolSuccess.png in Resources */,
+				8AA7A5D5165D057C005601FC /* GBHUDSymbolSuccess@2x.png in Resources */,
+				8AA7A5D6165D057C005601FC /* GBHUDSymbolError.png in Resources */,
+				8AA7A5D7165D057C005601FC /* GBHUDSymbolError@2x.png in Resources */,
+				8AA7A5D8165D057C005601FC /* GBHUDSymbolExplosion.png in Resources */,
+				8AA7A5D9165D057C005601FC /* GBHUDSymbolExplosion@2x.png in Resources */,
+				8AA7A5DA165D057C005601FC /* GBHUDSymbolInfo.png in Resources */,
+				8AA7A5DB165D057C005601FC /* GBHUDSymbolInfo@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A4CE3A6165CB7E30043DF4A /* Sources */ = {
@@ -155,7 +276,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8AA7A5C1165D051C005601FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8AA7A5CB165D051C005601FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8AA7A5CC165D051C005601FC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8A4CE3B6165CB7E30043DF4A /* Debug */ = {
@@ -229,6 +368,42 @@
 			};
 			name = Release;
 		};
+		8AA7A5D0165D051C005601FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUDResources/GBHUDResources-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "GBHUDResources/GBHUDResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8AA7A5D1165D051C005601FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUDResources/GBHUDResources-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "GBHUDResources/GBHUDResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -249,6 +424,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AA7A5D0165D051C005601FC /* Debug */,
+				8AA7A5D1165D051C005601FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

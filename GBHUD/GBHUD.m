@@ -5,17 +5,29 @@
 //  Created by Luka Mirosevic on 21/11/2012.
 //  Copyright (c) 2012 Goonbee. All rights reserved.
 //
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 #define kAnimationDuration 0.2
-
 #define kDefaultSize (CGSize){100, 110}
 #define kDefaultCornerRadius 8
 #define kDefaultSymbolSize (CGSize){60, 60}
 #define kDefaultSymbolTopOffset 16
 #define kDefaultTextBottomOffset 8
 #define kDefaultFont [UIFont fontWithName:@"Helvetica-Bold" size:12]
-#define kDefaultBackdropColor [UIColor colorWithWhite:0 alpha:0.5]
+#define kDefaultBackdropColor [UIColor colorWithWhite:0 alpha:0.7]
 #define kDefaultTextColor [UIColor whiteColor]
+#define kDefaultForcedOrientation 0
+
 
 #import "GBHUD.h"
 #import "GBHUDView.h"
@@ -118,7 +130,6 @@
 -(void)setSize:(CGSize)size {
     _size = size;
     
-//    self.hudView.si
     self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)/2.0, (self.containerView.bounds.size.height - size.height)/2.0, size.width, size.height);
 }
 
@@ -166,9 +177,16 @@
 
 -(void)setTextColor:(UIColor *)textColor {
     _textColor = textColor;
-    
+
     self.hudView.textColor = textColor;
 }
+
+-(void)setForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
+    _forcedOrientation = forcedOrientation;
+    
+    [self _sortOutOrientation];
+}
+
 
 #pragma mark - mem
 
@@ -194,6 +212,10 @@
         self.font = nil;
         self.backdropColor = nil;
         self.textColor = nil;
+        self.forcedOrientation = kDefaultForcedOrientation;
+        
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sortOutOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     
     return self;
@@ -212,9 +234,48 @@
 #pragma mark - public API
 
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated {
-    UIImage *image = nil;//foo todo
-    UIImageView *symbolImageView = [[UIImageView alloc] initWithImage:image];
-    [self showHUDWithView:symbolImageView text:text animated:animated];
+    __block UIView *symbolView;
+   
+    void(^prepareView)(NSString *name) = ^(NSString *name) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"GBHUDResources.bundle" stringByAppendingPathComponent:name]]];
+        imageView.contentMode = UIViewContentModeCenter;
+        symbolView = imageView;
+    };
+    
+    switch (type) {
+        case GBHUDTypeLoading: {
+            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [spinner startAnimating];
+            symbolView = spinner;
+        } break;
+            
+        case GBHUDTypeError: {
+            prepareView(@"GBHUDSymbolError");
+        } break;
+            
+        case GBHUDTypeSuccess: {
+            prepareView(@"GBHUDSymbolSuccess");
+        } break;
+            
+        case GBHUDTypeExplosion: {
+            prepareView(@"GBHUDSymbolExplosion");
+        } break;
+            
+        case GBHUDTypeInfo: {
+            prepareView(@"GBHUDSymbolInfo");
+        } break;
+            
+        case GBHUDTypeSleep: {
+            prepareView(@"GBHUDSymbolSleep");
+        } break;
+            
+        default:
+            break;
+    }
+    
+    if (symbolView) {
+        [self showHUDWithView:symbolView text:text animated:animated];
+    }
 }
 
 -(void)showHUDWithImage:(UIImage *)image text:(NSString *)text animated:(BOOL)animated {
@@ -256,6 +317,9 @@
         self.hudView = newHUD;
         self.containerView = containerView;
         
+        //sort out orientation
+        [self _sortOutOrientation];
+        
         //set flag
         self.isShowingHUD = YES;
         
@@ -293,21 +357,73 @@
 }
 
 -(void)dismissHUDAnimated:(BOOL)animated {
-    void(^completedBlock)(void) = ^{
-        [self.containerView removeFromSuperview];
-        self.containerView = nil;
-        self.isShowingHUD = NO;
-    };
-    
-    if (animated) {
-        [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            self.hudView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-        } completion:^(BOOL finished) {
+    if (self.isShowingHUD) {
+        void(^completedBlock)(void) = ^{
+            [self.containerView removeFromSuperview];
+            self.containerView = nil;
+            self.hudView = nil;
+            self.isShowingHUD = NO;
+        };
+        
+        if (animated) {
+            [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+                self.hudView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            } completion:^(BOOL finished) {
+                completedBlock();
+            }];
+        }
+        else {
             completedBlock();
-        }];
+        }
     }
     else {
-        completedBlock();
+        NSLog(@"GBHUD: can't dismiss HUD, not showing one.");
+    }
+}
+
+-(void)autoDismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated {
+    //to make sure we only close the HUD which is currently shown, not any potential future ones
+    GBHUDView *hudView = self.hudView;
+    
+    int64_t delayInSeconds = delay;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (self.isShowingHUD && (hudView == self.hudView)) {
+            [self dismissHUDAnimated:animated];
+        }
+    });
+}
+
+#pragma mark - private util
+
+-(void)_sortOutOrientation {
+    UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
+    
+    //if its forced override the orientation
+    if (self.forcedOrientation) {
+        currentOrientation = self.forcedOrientation;
+    }
+    
+    //rotate it
+    switch (currentOrientation) {
+        case UIDeviceOrientationLandscapeLeft:
+            self.containerView.transform = CGAffineTransformMakeRotation(0.5*M_PI);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            self.containerView.transform = CGAffineTransformMakeRotation(1.5*M_PI);
+            break;
+            
+        case UIDeviceOrientationPortrait:
+            self.containerView.transform = CGAffineTransformMakeRotation(0*M_PI);
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            self.containerView.transform = CGAffineTransformMakeRotation(1*M_PI);
+            break;
+            
+        default:
+            break;
     }
 }
 

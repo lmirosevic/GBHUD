@@ -10,6 +10,8 @@
 		8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4CE3AD165CB7E30043DF4A /* Foundation.framework */; };
 		8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; };
 		8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD.m */; };
+		8AA7A576165CBAEF005601FC /* GBHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A575165CBAEF005601FC /* GBHUDView.m */; };
+		8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,10 @@
 		8A4CE3B1165CB7E30043DF4A /* GBHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Prefix.pch"; sourceTree = "<group>"; };
 		8A4CE3B2165CB7E30043DF4A /* GBHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBHUD.h; sourceTree = "<group>"; };
 		8A4CE3B4165CB7E30043DF4A /* GBHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBHUD.m; sourceTree = "<group>"; };
+		8AA7A574165CBAEF005601FC /* GBHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDView.h; sourceTree = "<group>"; };
+		8AA7A575165CBAEF005601FC /* GBHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDView.m; sourceTree = "<group>"; };
+		8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDBackgroundView.h; sourceTree = "<group>"; };
+		8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDBackgroundView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,10 @@
 			children = (
 				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
 				8A4CE3B4165CB7E30043DF4A /* GBHUD.m */,
+				8AA7A574165CBAEF005601FC /* GBHUDView.h */,
+				8AA7A575165CBAEF005601FC /* GBHUDView.m */,
+				8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */,
+				8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */,
 				8A4CE3B0165CB7E30043DF4A /* Supporting Files */,
 			);
 			path = GBHUD;
@@ -140,6 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */,
+				8AA7A576165CBAEF005601FC /* GBHUDView.m in Sources */,
+				8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +179,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -187,7 +199,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -236,6 +248,7 @@
 				8A4CE3BA165CB7E30043DF4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

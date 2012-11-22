@@ -33,6 +33,8 @@ typedef enum {
 
 @property (assign, nonatomic, readonly) BOOL            isShowingHUD;
 @property (assign, nonatomic) BOOL                      disableUserInteraction;
+@property (assign, nonatomic) BOOL                      showCurtain;
+@property (assign, nonatomic) CGFloat                   curtainOpacity;
 @property (assign, nonatomic) CGSize                    size;
 @property (assign, nonatomic) CGFloat                   cornerRadius;
 @property (assign, nonatomic) CGSize                    symbolSize;
@@ -44,9 +46,6 @@ typedef enum {
 @property (assign, nonatomic) UIInterfaceOrientation    forcedOrientation;
 
 +(GBHUD *)sharedHUD;
-
-//add queieing up of HUD's
-//add bg view dimming
 
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated;
 -(void)showHUDWithImage:(UIImage *)image text:(NSString *)text animated:(BOOL)animated;

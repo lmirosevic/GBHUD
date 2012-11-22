@@ -18,6 +18,9 @@
 //  limitations under the License.
 
 #define kAnimationDuration 0.2
+#define kDefaultDisableUserInteraction YES
+#define kDefaultCurtainOpacity 0.3
+#define kDefaultShowCurtain YES
 #define kDefaultSize (CGSize){100, 110}
 #define kDefaultCornerRadius 8
 #define kDefaultSymbolSize (CGSize){60, 60}
@@ -36,8 +39,9 @@
 @interface GBHUD()
 
 @property (assign, nonatomic, readwrite) BOOL isShowingHUD;
-@property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) GBHUDView *hudView;
+@property (strong, nonatomic) UIView *containerView;
+@property (strong, nonatomic) UIView *curtainView;
 
 @end
 
@@ -187,6 +191,22 @@
     [self _sortOutOrientation];
 }
 
+-(void)setShowCurtain:(BOOL)showCurtain {
+    _showCurtain = showCurtain;
+    
+    if (showCurtain) {
+        self.curtainView.backgroundColor = [UIColor colorWithWhite:0 alpha:self.curtainOpacity];
+    }
+    else {
+        self.curtainView.backgroundColor = [UIColor clearColor];
+    }
+}
+
+-(void)setCurtainOpacity:(CGFloat)curtainOpacity {
+    _curtainOpacity = curtainOpacity;
+    
+    self.curtainView.backgroundColor = [UIColor colorWithWhite:0 alpha:curtainOpacity];
+}
 
 #pragma mark - mem
 
@@ -213,6 +233,9 @@
         self.backdropColor = nil;
         self.textColor = nil;
         self.forcedOrientation = kDefaultForcedOrientation;
+        self.showCurtain = kDefaultShowCurtain;
+        self.curtainOpacity = kDefaultCurtainOpacity;
+        self.disableUserInteraction = kDefaultDisableUserInteraction;
         
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sortOutOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -226,6 +249,7 @@
     
     self.hudView = nil;
     self.containerView = nil;
+    self.curtainView = nil;
     self.font = nil;
     self.backdropColor = nil;
     self.textColor = nil;
@@ -302,20 +326,32 @@
         newHUD.cornerRadius = self.cornerRadius;
         
         //create the container and add the hud to it
-        UIView *containerView = [[UIView alloc] initWithFrame:targetView.bounds];
+        UIView *containerView = [[UIView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds
         containerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-        containerView.userInteractionEnabled = self.disableUserInteraction;
         [containerView addSubview:newHUD];
         
         //center the hud in the container
         newHUD.center = containerView.center;
         
+        //create the curtain view and add the container to it
+        UIView *curtainView = [[UIView alloc] initWithFrame:targetView.bounds];
+        if (self.showCurtain) {
+            curtainView.backgroundColor = [UIColor colorWithWhite:0 alpha:self.curtainOpacity];
+        }
+        else {
+            curtainView.backgroundColor = [UIColor clearColor];
+        }
+        curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        curtainView.userInteractionEnabled = self.disableUserInteraction;
+        [curtainView addSubview:containerView];
+        
         //draw the view
-        [targetView addSubview:containerView];
+        [targetView addSubview:curtainView];
         
         //store in properties
         self.hudView = newHUD;
         self.containerView = containerView;
+        self.curtainView = curtainView;
         
         //sort out orientation
         [self _sortOutOrientation];
@@ -327,10 +363,13 @@
         if (animated) {
             //first shrink to 0
             newHUD.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            curtainView.alpha = 0;
             
             //then scale up a bit too much
             [UIView animateWithDuration:kAnimationDuration*0.5 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
                 newHUD.transform = CGAffineTransformMakeScale(1.15, 1.15);
+                curtainView.alpha = 1;
+                
             } completion:^(BOOL finished) {
                 
                 //bounce back
@@ -348,8 +387,6 @@
                 
             }];
         }
-        else {
-        }
     }
     else {
         NSLog(@"GBHUD: can't show new HUD, already showing one.");
@@ -359,15 +396,18 @@
 -(void)dismissHUDAnimated:(BOOL)animated {
     if (self.isShowingHUD) {
         void(^completedBlock)(void) = ^{
-            [self.containerView removeFromSuperview];
+            [self.curtainView removeFromSuperview];
             self.containerView = nil;
             self.hudView = nil;
+            self.curtainView = nil;
             self.isShowingHUD = NO;
         };
         
         if (animated) {
             [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
                 self.hudView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+                self.curtainView.alpha = 0;
+                
             } completion:^(BOOL finished) {
                 completedBlock();
             }];

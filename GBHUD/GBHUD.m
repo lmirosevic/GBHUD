@@ -21,7 +21,7 @@
 #define kDefaultDisableUserInteraction YES
 #define kDefaultCurtainOpacity 0.3
 #define kDefaultShowCurtain YES
-#define kDefaultSize (CGSize){100, 110}
+#define kDefaultSize (CGSize){110, 110}
 #define kDefaultCornerRadius 8
 #define kDefaultSymbolSize (CGSize){60, 60}
 #define kDefaultSymbolTopOffset 16

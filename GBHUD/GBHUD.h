@@ -54,3 +54,5 @@ typedef enum {
 -(void)autoDismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated;
 
 @end
+
+//add an enum for no icon, and if thats the case, then make it a small HUD with text only, like the on e in the skala preview app

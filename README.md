@@ -24,7 +24,7 @@ GBHUD *hud = [GBHUD sharedHUD];
 Demo project
 ------------
 
-See: www.github.com/lmirosevic/GBHUDDemo
+See: [github.com/lmirosevic/GBHUDDemo](https://github.com/lmirosevic/GBHUDDemo)
 
 Dependencies
 ------------

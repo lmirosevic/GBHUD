@@ -1,5 +1,5 @@
 //
-//  GBHUD.m
+//  GBHUD-Implementation.m
 //  GBHUD
 //
 //  Created by Luka Mirosevic on 21/11/2012.
@@ -52,12 +52,16 @@
     CGSize _symbolSize;
     CGFloat _symbolTopOffset;
     CGFloat _textBottomOffset;
+    
+#if TARGET_OS_IPHONE
     UIFont *_font;
     UIColor *_backdropColor;
     UIColor *_textColor;
+#else
+#endif
 }
 
-#pragma mark - acc
+#pragma mark - custom accessors: Common
 
 -(CGFloat)cornerRadius {
     if (_cornerRadius == 0) {
@@ -92,33 +96,6 @@
     }
     else {
         return _textBottomOffset;
-    }
-}
-
--(UIFont *)font {
-    if (!_font) {
-        return kDefaultFont;
-    }
-    else {
-        return _font;
-    }
-}
-
--(UIColor *)backdropColor {
-    if (!_backdropColor) {
-        return kDefaultBackdropColor;
-    }
-    else {
-        return _backdropColor;
-    }
-}
-
--(UIColor *)textColor {
-    if (!_textColor) {
-        return kDefaultTextColor;
-    }
-    else {
-        return _textColor;
     }
 }
 
@@ -167,30 +144,6 @@
     self.hudView.labelBottomOffset = textBottomOffset;
 }
 
--(void)setFont:(UIFont *)font {
-    _font = font;
-    
-    self.hudView.font = font;
-}
-
--(void)setBackdropColor:(UIColor *)backdropColor {
-    _backdropColor = backdropColor;
-    
-    self.hudView.backdropColor = backdropColor;
-}
-
--(void)setTextColor:(UIColor *)textColor {
-    _textColor = textColor;
-
-    self.hudView.textColor = textColor;
-}
-
--(void)setForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
-    _forcedOrientation = forcedOrientation;
-    
-    [self _sortOutOrientation];
-}
-
 -(void)setShowCurtain:(BOOL)showCurtain {
     _showCurtain = showCurtain;
     
@@ -208,7 +161,68 @@
     self.curtainView.backgroundColor = [UIColor colorWithWhite:0 alpha:curtainOpacity];
 }
 
-#pragma mark - mem
+#pragma mark - custom accessors: iOS
+
+#if TARGET_OS_IPHONE
+-(UIFont *)font {
+    if (!_font) {
+        return kDefaultFont;
+    }
+    else {
+        return _font;
+    }
+}
+
+-(UIColor *)backdropColor {
+    if (!_backdropColor) {
+        return kDefaultBackdropColor;
+    }
+    else {
+        return _backdropColor;
+    }
+}
+
+-(UIColor *)textColor {
+    if (!_textColor) {
+        return kDefaultTextColor;
+    }
+    else {
+        return _textColor;
+    }
+}
+
+-(void)setFont:(UIFont *)font {
+    _font = font;
+    
+    self.hudView.font = font;
+}
+
+-(void)setBackdropColor:(UIColor *)backdropColor {
+    _backdropColor = backdropColor;
+    
+    self.hudView.backdropColor = backdropColor;
+}
+
+-(void)setTextColor:(UIColor *)textColor {
+    _textColor = textColor;
+    
+    self.hudView.textColor = textColor;
+}
+
+-(void)setForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
+    _forcedOrientation = forcedOrientation;
+    
+    [self _sortOutOrientation];
+}
+#endif
+
+#pragma mark - custom accessors: OSX
+
+#if !TARGET_OS_IPHONE
+//foo put them here
+#endif
+
+#pragma mark - memory
 
 +(GBHUD *)sharedHUD {
     static GBHUD* _sharedHUD;
@@ -468,3 +482,6 @@
 }
 
 @end
+
+
+//add an enum for no icon, and if thats the case, then make it a small HUD with text only, like the on e in the skala preview app

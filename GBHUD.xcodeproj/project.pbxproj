@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4CE3AD165CB7E30043DF4A /* Foundation.framework */; };
 		8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; };
-		8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD.m */; };
+		8A4CE3B5165CB7E30043DF4A /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
 		8AA7A576165CBAEF005601FC /* GBHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A575165CBAEF005601FC /* GBHUDView.m */; };
 		8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */; };
 		8AA7A5C7165D051C005601FC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
@@ -26,6 +26,14 @@
 		8AA7A5DB165D057C005601FC /* GBHUDSymbolInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */; };
 		8ACDEE8A173FCF4A00795FB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACDEE89173FCF4A00795FB7 /* Cocoa.framework */; };
 		8ACDEE9D173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEE9C173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch */; };
+		8ACDEE9E173FD18500795FB7 /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
+		8ACDEE9F173FD18500795FB7 /* GBHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A575165CBAEF005601FC /* GBHUDView.m */; };
+		8ACDEEA0173FD18500795FB7 /* GBHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */; };
+		8ACDEEA1173FD19200795FB7 /* GBHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8ACDEEA2173FD19200795FB7 /* GBHUDView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA7A574165CBAEF005601FC /* GBHUDView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8ACDEEA3173FD19200795FB7 /* GBHUDBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8ACDEEA6173FD7CD00795FB7 /* GBHUD-Interface-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEEA5173FD7CD00795FB7 /* GBHUD-Interface-OSX.h */; };
+		8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,7 +54,7 @@
 		8A4CE3AD165CB7E30043DF4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4CE3B1165CB7E30043DF4A /* GBHUD-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		8A4CE3B2165CB7E30043DF4A /* GBHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBHUD.h; sourceTree = "<group>"; };
-		8A4CE3B4165CB7E30043DF4A /* GBHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBHUD.m; sourceTree = "<group>"; };
+		8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GBHUD-Implementation.m"; sourceTree = "<group>"; };
 		8AA7A574165CBAEF005601FC /* GBHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDView.h; sourceTree = "<group>"; };
 		8AA7A575165CBAEF005601FC /* GBHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDView.m; sourceTree = "<group>"; };
 		8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDBackgroundView.h; sourceTree = "<group>"; };
@@ -73,6 +81,9 @@
 		8ACDEE8E173FCF4A00795FB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8ACDEE91173FCF4A00795FB7 /* GBHUD-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUD-Info.plist"; sourceTree = "<group>"; };
 		8ACDEE9C173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBHUD-OSX-Prefix.pch"; sourceTree = "<group>"; };
+		8ACDEEA4173FD79700795FB7 /* GBHUD-Interface-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Interface-iOS.h"; sourceTree = "<group>"; };
+		8ACDEEA5173FD7CD00795FB7 /* GBHUD-Interface-OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Interface-OSX.h"; sourceTree = "<group>"; };
+		8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
-				8A4CE3B4165CB7E30043DF4A /* GBHUD.m */,
+				8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */,
+				8ACDEEA4173FD79700795FB7 /* GBHUD-Interface-iOS.h */,
+				8ACDEEA5173FD7CD00795FB7 /* GBHUD-Interface-OSX.h */,
+				8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */,
 				8AA7A574165CBAEF005601FC /* GBHUDView.h */,
 				8AA7A575165CBAEF005601FC /* GBHUDView.m */,
 				8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */,
@@ -220,6 +234,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ACDEE9D173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch in Headers */,
+				8ACDEEA1173FD19200795FB7 /* GBHUD.h in Headers */,
+				8ACDEEA2173FD19200795FB7 /* GBHUDView.h in Headers */,
+				8ACDEEA3173FD19200795FB7 /* GBHUDBackgroundView.h in Headers */,
+				8ACDEEA6173FD7CD00795FB7 /* GBHUD-Interface-OSX.h in Headers */,
+				8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A4CE3B5165CB7E30043DF4A /* GBHUD.m in Sources */,
+				8A4CE3B5165CB7E30043DF4A /* GBHUD-Implementation.m in Sources */,
 				8AA7A576165CBAEF005601FC /* GBHUDView.m in Sources */,
 				8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */,
 			);
@@ -356,6 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ACDEE9E173FD18500795FB7 /* GBHUD-Implementation.m in Sources */,
+				8ACDEE9F173FD18500795FB7 /* GBHUDView.m in Sources */,
+				8ACDEEA0173FD18500795FB7 /* GBHUDBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,7 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8A4CE3AA165CB7E30043DF4A /* libGBHUD-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libGBHUD-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4CE3AD165CB7E30043DF4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4CE3B1165CB7E30043DF4A /* GBHUD-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		8A4CE3B2165CB7E30043DF4A /* GBHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBHUD.h; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		8A4CE3AB165CB7E30043DF4A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A4CE3AA165CB7E30043DF4A /* libGBHUD-iOS.a */,
+				8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */,
 				8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */,
 				8ACDEE88173FCF4A00795FB7 /* GBHUD.framework */,
 			);
@@ -263,7 +263,7 @@
 			);
 			name = "GBHUD-iOS";
 			productName = GBHUD;
-			productReference = 8A4CE3AA165CB7E30043DF4A /* libGBHUD-iOS.a */;
+			productReference = 8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8AA7A5C4165D051C005601FC /* GBHUDResources */ = {
@@ -456,7 +456,7 @@
 				DSTROOT = /tmp/GBHUD.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GBHUD/GBHUD-iOS-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GBHUD;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -467,7 +467,7 @@
 				DSTROOT = /tmp/GBHUD.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GBHUD/GBHUD-iOS-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GBHUD;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

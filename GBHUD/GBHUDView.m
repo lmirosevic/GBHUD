@@ -214,6 +214,7 @@ static CGFloat const kLabelFontSizeMin = 8;
     label.minimumFontSize = kLabelFontSizeMin;
     label.adjustsFontSizeToFitWidth = YES;
     label.text = self.text;
+    label.backgroundColor = [UIColor clearColor];
 #else
     NSTextField *label = [[NSTextField alloc] initWithFrame:CGRectMake(kLabelSidePadding, self.bounds.size.height - kLabelHeight - self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight)];
     
@@ -221,9 +222,9 @@ static CGFloat const kLabelFontSizeMin = 8;
     label.alignment = NSCenterTextAlignment;
     label.stringValue = self.text;
     [label shrinkTextToFitWithTargetFont:self.font andMinSize:kLabelFontSizeMin];
-#endif
     
-    //foo there was a clear bg color thing here... so make sure window isnt white
+    //foo might need a clear bg color
+#endif
     
     label.textColor = self.textColor;
     label.font = self.font;

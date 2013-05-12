@@ -17,18 +17,18 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <UIKit/UIKit.h>
+#import "GBHUDShims.h"
 
-@interface GBHUDView : UIView
+@interface GBHUDView : GBView
 
-@property (strong, nonatomic) UIView *symbolView;
-@property (assign, nonatomic) CGFloat cornerRadius;
-@property (strong, nonatomic) NSString *text;
-@property (assign, nonatomic) CGSize symbolSize;
-@property (assign, nonatomic) CGFloat symbolTopOffset;
-@property (assign, nonatomic) CGFloat labelBottomOffset;
-@property (strong, nonatomic) UIFont *font;
-@property (strong, nonatomic) UIColor *backdropColor;
-@property (strong, nonatomic) UIColor *textColor;
+@property (strong, nonatomic) GBView        *symbolView;
+@property (assign, nonatomic) CGFloat       cornerRadius;
+@property (strong, nonatomic) NSString      *text;
+@property (assign, nonatomic) CGSize        symbolSize;
+@property (assign, nonatomic) CGFloat       symbolTopOffset;
+@property (assign, nonatomic) CGFloat       labelBottomOffset;
+@property (strong, nonatomic) GBFont        *font;
+@property (strong, nonatomic) GBColor       *backdropColor;
+@property (strong, nonatomic) GBColor       *textColor;
 
 @end

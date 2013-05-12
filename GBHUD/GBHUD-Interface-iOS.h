@@ -17,9 +17,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 #import "GBHUDTypes.h"
 
 @interface GBHUD : NSObject
@@ -33,7 +30,6 @@
 @property (assign, nonatomic) CGSize                    symbolSize;
 @property (assign, nonatomic) CGFloat                   symbolTopOffset;
 @property (assign, nonatomic) CGFloat                   textBottomOffset;
-
 @property (strong, nonatomic) UIFont                    *font;
 @property (strong, nonatomic) UIColor                   *backdropColor;
 @property (strong, nonatomic) UIColor                   *textColor;

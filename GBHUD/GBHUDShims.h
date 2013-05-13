@@ -27,11 +27,13 @@
     #define GBColor UIColor
     #define GBView UIView
     #define GBImage UIImage
+    static NSString * const kGBHUDResourcesBundleName = @"GBHUDResources-iOS.bundle";
 #else
     #define GBFont NSFont
     #define GBColor NSColor
     #define GBView NSView
     #define GBImage NSImage
+    static NSString * const kGBHUDResourcesBundleName = @"GBHUDResources-OSX.bundle";
 #endif
 
 

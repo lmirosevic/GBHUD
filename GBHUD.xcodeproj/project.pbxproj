@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0A37471740B78D0004D345 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
+		8A0A374D1740B78D0004D345 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A0A374B1740B78D0004D345 /* InfoPlist.strings */; };
 		8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4CE3AD165CB7E30043DF4A /* Foundation.framework */; };
 		8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; };
 		8A4CE3B5165CB7E30043DF4A /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
@@ -24,8 +26,9 @@
 		8AA7A5D9165D057C005601FC /* GBHUDSymbolExplosion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */; };
 		8AA7A5DA165D057C005601FC /* GBHUDSymbolInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */; };
 		8AA7A5DB165D057C005601FC /* GBHUDSymbolInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */; };
-		8AAD2498173FDCBA002C2224 /* GBHUDShims.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD2497173FDC30002C2224 /* GBHUDShims.h */; };
-		8AAD24CB173FF422002C2224 /* GBHUD-Interface-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD24CA173FF422002C2224 /* GBHUD-Interface-OSX.h */; };
+		8AAD2498173FDCBA002C2224 /* GBHUDShims.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD2497173FDC30002C2224 /* GBHUDShims.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8AAD24CB173FF422002C2224 /* GBHUD-Interface-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD24CA173FF422002C2224 /* GBHUD-Interface-OSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8AC0838F1740AFA400F86A34 /* GBHUD-Interface-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD24C9173FF3EF002C2224 /* GBHUD-Interface-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ACDEE8A173FCF4A00795FB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACDEE89173FCF4A00795FB7 /* Cocoa.framework */; };
 		8ACDEE9D173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEE9C173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch */; };
 		8ACDEE9E173FD18500795FB7 /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
@@ -34,7 +37,7 @@
 		8ACDEEA1173FD19200795FB7 /* GBHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ACDEEA2173FD19200795FB7 /* GBHUDView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA7A574165CBAEF005601FC /* GBHUDView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ACDEEA3173FD19200795FB7 /* GBHUDBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */; };
+		8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +54,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8A0A37461740B78D0004D345 /* GBHUDResources-OSX.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GBHUDResources-OSX.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0A374A1740B78D0004D345 /* GBHUDResources-OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUDResources-OSX-Info.plist"; sourceTree = "<group>"; };
+		8A0A374C1740B78D0004D345 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8A0A374E1740B78D0004D345 /* GBHUDResources-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUDResources-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4CE3AD165CB7E30043DF4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4CE3B1165CB7E30043DF4A /* GBHUD-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-iOS-Prefix.pch"; sourceTree = "<group>"; };
@@ -70,7 +77,7 @@
 		8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolError@2x.png"; sourceTree = "<group>"; };
 		8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolExplosion@2x.png"; sourceTree = "<group>"; };
 		8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSuccess.png; sourceTree = "<group>"; };
-		8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GBHUDResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AA7A5C5165D051C005601FC /* GBHUDResources-iOS.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GBHUDResources-iOS.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA7A5C6165D051C005601FC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8AA7A5CA165D051C005601FC /* GBHUDResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUDResources-Info.plist"; sourceTree = "<group>"; };
 		8AA7A5CC165D051C005601FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -89,6 +96,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8A0A37431740B78D0004D345 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A0A37471740B78D0004D345 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A4CE3A7165CB7E30043DF4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,11 +131,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0A37481740B78D0004D345 /* GBHUDResources-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				8A0A37491740B78D0004D345 /* Supporting Files */,
+			);
+			path = "GBHUDResources-OSX";
+			sourceTree = "<group>";
+		};
+		8A0A37491740B78D0004D345 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A0A374A1740B78D0004D345 /* GBHUDResources-OSX-Info.plist */,
+				8A0A374B1740B78D0004D345 /* InfoPlist.strings */,
+				8A0A374E1740B78D0004D345 /* GBHUDResources-OSX-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		8A4CE39F165CB7E30043DF4A = {
 			isa = PBXGroup;
 			children = (
 				8A4CE3AF165CB7E30043DF4A /* GBHUD */,
 				8AA7A5C8165D051C005601FC /* GBHUDResources */,
+				8A0A37481740B78D0004D345 /* GBHUDResources-OSX */,
 				8A4CE3AC165CB7E30043DF4A /* Frameworks */,
 				8A4CE3AB165CB7E30043DF4A /* Products */,
 			);
@@ -130,8 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */,
-				8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */,
+				8AA7A5C5165D051C005601FC /* GBHUDResources-iOS.bundle */,
 				8ACDEE88173FCF4A00795FB7 /* GBHUD.framework */,
+				8A0A37461740B78D0004D345 /* GBHUDResources-OSX.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,8 +205,8 @@
 		8AA7A58E165CFA1E005601FC /* Symbols */ = {
 			isa = PBXGroup;
 			children = (
-				8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */,
 				8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */,
+				8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */,
 				8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */,
 				8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */,
 				8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */,
@@ -243,12 +278,30 @@
 				8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */,
 				8AAD2498173FDCBA002C2224 /* GBHUDShims.h in Headers */,
 				8AAD24CB173FF422002C2224 /* GBHUD-Interface-OSX.h in Headers */,
+				8AC0838F1740AFA400F86A34 /* GBHUD-Interface-iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8A0A37451740B78D0004D345 /* GBHUDResources-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A0A374F1740B78D0004D345 /* Build configuration list for PBXNativeTarget "GBHUDResources-OSX" */;
+			buildPhases = (
+				8A0A37421740B78D0004D345 /* Sources */,
+				8A0A37431740B78D0004D345 /* Frameworks */,
+				8A0A37441740B78D0004D345 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GBHUDResources-OSX";
+			productName = "GBHUDResources-OSX";
+			productReference = 8A0A37461740B78D0004D345 /* GBHUDResources-OSX.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8A4CE3A9165CB7E30043DF4A /* GBHUD-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A4CE3B8165CB7E30043DF4A /* Build configuration list for PBXNativeTarget "GBHUD-iOS" */;
@@ -266,9 +319,9 @@
 			productReference = 8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		8AA7A5C4165D051C005601FC /* GBHUDResources */ = {
+		8AA7A5C4165D051C005601FC /* GBHUDResources-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources" */;
+			buildConfigurationList = 8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources-iOS" */;
 			buildPhases = (
 				8AA7A5C1165D051C005601FC /* Sources */,
 				8AA7A5C2165D051C005601FC /* Frameworks */,
@@ -278,9 +331,9 @@
 			);
 			dependencies = (
 			);
-			name = GBHUDResources;
+			name = "GBHUDResources-iOS";
 			productName = GBHUDResources;
-			productReference = 8AA7A5C5165D051C005601FC /* GBHUDResources.bundle */;
+			productReference = 8AA7A5C5165D051C005601FC /* GBHUDResources-iOS.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8ACDEE87173FCF4A00795FB7 /* GBHUD-OSX */ = {
@@ -323,13 +376,22 @@
 			projectRoot = "";
 			targets = (
 				8A4CE3A9165CB7E30043DF4A /* GBHUD-iOS */,
-				8AA7A5C4165D051C005601FC /* GBHUDResources */,
+				8AA7A5C4165D051C005601FC /* GBHUDResources-iOS */,
 				8ACDEE87173FCF4A00795FB7 /* GBHUD-OSX */,
+				8A0A37451740B78D0004D345 /* GBHUDResources-OSX */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8A0A37441740B78D0004D345 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A0A374D1740B78D0004D345 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AA7A5C3165D051C005601FC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,6 +420,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8A0A37421740B78D0004D345 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A4CE3A6165CB7E30043DF4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +457,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		8A0A374B1740B78D0004D345 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A0A374C1740B78D0004D345 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8AA7A5CB165D051C005601FC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -399,6 +476,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8A0A37501740B78D0004D345 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUDResources-OSX/GBHUDResources-OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "GBHUDResources-OSX/GBHUDResources-OSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "GBHUDResources-OSX";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8A0A37511740B78D0004D345 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBHUDResources-OSX/GBHUDResources-OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "GBHUDResources-OSX/GBHUDResources-OSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "GBHUDResources-OSX";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		8A4CE3B6165CB7E30043DF4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -484,7 +604,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "GBHUDResources-iOS";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -502,7 +622,7 @@
 				INFOPLIST_FILE = "GBHUDResources/GBHUDResources-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "GBHUDResources-iOS";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -568,6 +688,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8A0A374F1740B78D0004D345 /* Build configuration list for PBXNativeTarget "GBHUDResources-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A0A37501740B78D0004D345 /* Debug */,
+				8A0A37511740B78D0004D345 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8A4CE3A4165CB7E30043DF4A /* Build configuration list for PBXProject "GBHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -586,7 +715,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources" */ = {
+		8AA7A5CF165D051C005601FC /* Build configuration list for PBXNativeTarget "GBHUDResources-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8AA7A5D0165D051C005601FC /* Debug */,

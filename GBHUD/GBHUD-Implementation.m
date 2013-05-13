@@ -292,11 +292,11 @@
    
     void(^prepareView)(NSString *name) = ^(NSString *name) {
 #if TARGET_OS_IPHONE
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"GBHUDResources.bundle" stringByAppendingPathComponent:name]]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]]];
         imageView.contentMode = UIViewContentModeCenter;
 #else
         NSImageView *imageView = [[NSImageView alloc] init];
-        NSImage *image = [NSImage imageNamed:[@"GBHUDResources.bundle" stringByAppendingPathComponent:name]];
+        NSImage *image = [NSImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]];
         imageView.image = image;
         imageView.imageAlignment = NSImageAlignCenter;
 #endif

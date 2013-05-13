@@ -37,10 +37,20 @@
 
 +(GBHUD *)sharedHUD;
 
+
+-(void)autoDismissAfterDelay:(NSTimeInterval)delay;
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated;
+
+-(void)showHUDWithImage:(UIImage *)image text:(NSString *)text;
 -(void)showHUDWithImage:(UIImage *)image text:(NSString *)text animated:(BOOL)animated;
+
+-(void)showHUDWithView:(UIView *)symbolView text:(NSString *)text;
 -(void)showHUDWithView:(UIView *)symbolView text:(NSString *)text animated:(BOOL)animated;
+
+-(void)dismissHUD;
 -(void)dismissHUDAnimated:(BOOL)animated;
+
+-(void)showHUDWithType:(GBHUDType)type text:(NSString *)text;
 -(void)autoDismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated;
 
 @end

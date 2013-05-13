@@ -238,7 +238,7 @@
     _forcedOrientation = forcedOrientation;
     
     [self _sortOutOrientation];
-
+}
 #endif
 
 #pragma mark - lazy
@@ -323,11 +323,12 @@
 
 -(void)dealloc {
     [self dismissHUDAnimated:NO];
+    
 #if !TARGET_OS_IPHONE
     _popupWindow = nil;
-#endif
     [self.spinner stopAnimation:self];
     self.spinner = nil;
+#endif
     self.hudView = nil;
     self.containerView = nil;
     self.curtainView = nil;
@@ -574,10 +575,11 @@
     if (self.isShowingHUD) {
         void(^completedBlock)(void) = ^{
             //if we had a spinner, kill it because it gets fucked up when placed in a window that goes in and out of focus
+#if !TARGET_OS_IPHONE
             [self.spinner stopAnimation:self];
             [self.spinner removeFromSuperview];
-            
             [self.popupWindow orderOut:self];
+#endif
             [self.curtainView removeFromSuperview];
             self.containerView = nil;
             self.hudView = nil;

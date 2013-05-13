@@ -203,7 +203,11 @@ static CGFloat const kLabelFontSizeMin = 8;
 
 -(void)_resizeSymbol {
     if (self.symbolView) {
-        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.bounds.size.height - self.symbolSize.height - self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);//foo is position correct?
+#if TARGET_OS_IPHONE
+        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
+#else
+        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.bounds.size.height - self.symbolSize.height - self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
+#endif
     }
 }
 

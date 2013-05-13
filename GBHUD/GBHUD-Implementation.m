@@ -54,8 +54,8 @@
 @property (strong, nonatomic) GBView                            *curtainView;
 
 #if !TARGET_OS_IPHONE
-@property (strong, nonatomic, readonly) NSBundle                *resourcesBundle;
 @property (strong, nonatomic) NSProgressIndicator               *spinner;
+@property (strong, nonatomic, readonly) NSBundle                *resourcesBundle;
 @property (strong, nonatomic,readonly) NSWindow                 *popupWindow;
 #endif
 
@@ -252,21 +252,6 @@
     return _resourcesBundle;
 }
     
--(NSProgressIndicator *)spinner {
-    if (!_spinner) {
-        _spinner = [[NSProgressIndicator alloc] init];
-        _spinner.style = NSProgressIndicatorSpinningStyle;
-        _spinner.wantsLayer = YES;
-        _spinner.layer.zPosition = 10;
-        _spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
-        _spinner.frame = NSMakeRect(0, 0, 32, 32);
-    }
-    
-    [_spinner startAnimation:self];
-    
-    return _spinner;
-}
-    
 -(NSWindow *)popupWindow {
     if (!_popupWindow) {
         _popupWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0,0,0,0) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
@@ -371,7 +356,6 @@
             NSProgressIndicator *spinner = [[NSProgressIndicator alloc] init];
             spinner.style = NSProgressIndicatorSpinningStyle;
             spinner.wantsLayer = YES;
-            spinner.layer.zPosition = 10;
             spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
             spinner.frame = NSMakeRect(0, 0, 32, 32);
             
@@ -443,7 +427,7 @@
 #if !TARGET_OS_IPHONE
         //make sure the symbolview has the right zOrder
         symbolView.wantsLayer = YES;
-        symbolView.layer.zPosition = 10;
+        symbolView.layer.zPosition = 1003;
 #endif
         
         //create the hud view
@@ -507,10 +491,9 @@
         curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         curtainView.userInteractionEnabled = self.disableUserInteraction;
 #else
-//        [targetView setContentFilters:@[[CIFilter filterWithName:@""]]];
-        //foo todo, set the color of the curtain view, like above
+        //todo, set the color of the curtain view, like above if I implement it
         curtainView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
-        //foo todo add the user interaction stuff to the mac version, like above
+        //todo add the user interaction stuff to the mac version, like above, if i implement it
 #endif
         [curtainView addSubview:containerView];
         

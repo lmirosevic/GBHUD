@@ -52,8 +52,6 @@
     if (self) {
 #if TARGET_OS_IPHONE
         self.backgroundColor = [UIColor clearColor];
-#else
-        //foo might need clear bg on OSX
 #endif
         self.cornerRadius = 0;
     }

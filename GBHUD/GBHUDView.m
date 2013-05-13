@@ -140,6 +140,9 @@ static CGFloat const kLabelFontSizeMin = 8;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.wantsLayer = YES;
+        self.layer.zPosition = 1000;
+        
         //add and draw subviews
         [self _addBackground];
         [self _addSymbol];
@@ -172,7 +175,7 @@ static CGFloat const kLabelFontSizeMin = 8;
 #else
     bgView.autoresizingMask = (NSViewHeightSizable | NSViewWidthSizable);
     bgView.wantsLayer = YES;
-    bgView.layer.zPosition = 0;
+    bgView.layer.zPosition = 1001;
 #endif
     bgView.color = self.backdropColor;
     bgView.cornerRadius = self.cornerRadius;
@@ -233,7 +236,7 @@ static CGFloat const kLabelFontSizeMin = 8;
     [label setSelectable:NO];
     [label setBezeled:NO];
     label.wantsLayer = YES;
-    label.layer.zPosition = 10;
+    label.layer.zPosition = 1002;
 #endif
     
     label.textColor = self.textColor;

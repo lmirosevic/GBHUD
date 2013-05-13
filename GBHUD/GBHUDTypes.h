@@ -1,9 +1,9 @@
 //
-//  GBHUDBackgroundView.h
+//  GBHUDTypes.h
 //  GBHUD
 //
-//  Created by Luka Mirosevic on 21/11/2012.
-//  Copyright (c) 2012 Goonbee. All rights reserved.
+//  Created by Luka Mirosevic on 12/05/2013.
+//  Copyright (c) 2013 Goonbee. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,11 +17,16 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import "GBHUDShims.h"
+#ifndef GBHUD_GBHUDTypes_h
+#define GBHUD_GBHUDTypes_h
 
-@interface GBHUDBackgroundView : GBView
+typedef enum {
+    GBHUDTypeLoading,
+    GBHUDTypeSuccess,
+    GBHUDTypeError,
+    GBHUDTypeSleep,
+    GBHUDTypeExplosion,
+    GBHUDTypeInfo,
+} GBHUDType;
 
-@property (strong, nonatomic) GBColor *color;
-@property (assign, nonatomic) CGFloat cornerRadius;
-
-@end
+#endif

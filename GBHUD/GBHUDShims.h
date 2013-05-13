@@ -1,9 +1,9 @@
 //
-//  GBHUD.h
+//  GBHUDShims.h
 //  GBHUD
 //
-//  Created by Luka Mirosevic on 21/11/2012.
-//  Copyright (c) 2012 Goonbee. All rights reserved.
+//  Created by Luka Mirosevic on 12/05/2013.
+//  Copyright (c) 2013 Goonbee. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,8 +17,24 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+#ifndef GBHUD_GBHUDShims_h
+#define GBHUD_GBHUDShims_h
+
 #if TARGET_OS_IPHONE
-    #import "GBHUD-Interface-iOS.h"
+    #import <UIKit/UIKit.h>
+
+    #define GBFont UIFont
+    #define GBColor UIColor
+    #define GBView UIView
+    #define GBImage UIImage
+    static NSString * const kGBHUDResourcesBundleName = @"GBHUDResources-iOS.bundle";
 #else
-    #import "GBHUD-Interface-OSX.h"
+    #define GBFont NSFont
+    #define GBColor NSColor
+    #define GBView NSView
+    #define GBImage NSImage
+    static NSString * const kGBHUDResourcesBundleName = @"GBHUDResources-OSX.bundle";
+#endif
+
+
 #endif

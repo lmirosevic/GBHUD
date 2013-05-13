@@ -17,23 +17,62 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+#if !TARGET_OS_IPHONE
+@interface NSTextField (Shrinking)
+
+-(void)shrinkTextToFitWithTargetFont:(NSFont *)targetFont andMinSize:(CGFloat)minSize;
+
+@end
+
+@implementation NSTextField (Shrinking)
+
+-(void)shrinkTextToFitWithTargetFont:(NSFont *)targetFont andMinSize:(CGFloat)minSize {
+    CGFloat targetWidth = self.bounds.size.width;
+    CGFloat targetHeight = self.bounds.size.height;
+    
+    CGFloat targetSize = [[[targetFont fontDescriptor] objectForKey:NSFontSizeAttribute] floatValue];
+    NSString *fontName = [targetFont fontName];
+    
+    for (int i=targetSize; i>=minSize; i--) {
+        NSSize potentialSize = [self.stringValue sizeWithAttributes:@{NSFontAttributeName: [NSFont fontWithName:fontName size:i]}];
+        
+        if (potentialSize.width <= targetWidth && potentialSize.height <= targetHeight) {
+            [self setFont:[NSFont fontWithName:fontName size:i]];
+            
+            break;
+        }
+    }
+}
+
+@end
+#endif
+
+
 #import "GBHUDView.h"
 #import "GBHUDBackgroundView.h"
 
-#define kLabelSidePadding 6
-#define kLabelHeight 20
+
+static CGFloat const kLabelSidePadding = 6;
+static CGFloat const kLabelHeight = 20;
+static CGFloat const kLabelFontSizeMin = 8;
+
 
 @interface GBHUDView ()
 
-@property (strong, nonatomic) GBHUDBackgroundView *backgroundView;
-@property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) GBHUDBackgroundView   *backgroundView;
+
+#if TARGET_OS_IPHONE
+@property (strong, nonatomic) UILabel               *label;
+#else
+@property (strong, nonatomic) NSTextField           *label;
+#endif
 
 @end
 
 
 @implementation GBHUDView
 
-#pragma mark - acc
+#pragma mark - custom accessors
 
 -(void)setCornerRadius:(CGFloat)cornerRadius {
     _cornerRadius = cornerRadius;
@@ -59,7 +98,8 @@
     [self _resizeLabel];
 }
 
--(void)setSymbolView:(UIView *)symbolView {
+-(void)setSymbolView:(GBView *)symbolView {
+    //remove the old view first
     [_symbolView removeFromSuperview];
     
     _symbolView = symbolView;
@@ -68,24 +108,28 @@
 }
 
 -(void)setText:(NSString *)text {
-    _text = text;
+    _text = text ? text : @"";;
     
-    self.label.text = text;
+#if TARGET_OS_IPHONE
+    self.label.text = text ? text : @"";
+#else
+    self.label.stringValue = text ? text : @"";
+#endif
 }
 
--(void)setFont:(UIFont *)font {
+-(void)setFont:(GBFont *)font {
     _font = font;
     
     self.label.font = font;
 }
 
--(void)setBackdropColor:(UIColor *)backdropColor {
+-(void)setBackdropColor:(GBColor *)backdropColor {
     _backdropColor = backdropColor;
     
     self.backgroundView.color = backdropColor;
 }
 
--(void)setTextColor:(UIColor *)textColor {
+-(void)setTextColor:(GBColor *)textColor {
     _textColor = textColor;
     
     self.label.textColor = textColor;
@@ -105,7 +149,6 @@
 }
 
 -(void)dealloc {
-    self.backgroundColor = nil;
     self.text = nil;
     self.font = nil;
     self.backdropColor = nil;
@@ -123,8 +166,14 @@
 
 -(void)_addBackground {
     GBHUDBackgroundView *bgView = [[GBHUDBackgroundView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+    
+#if TARGET_OS_IPHONE
     bgView.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
-    bgView.center = self.center;
+#else
+    bgView.autoresizingMask = (NSViewHeightSizable | NSViewWidthSizable);
+    bgView.wantsLayer = YES;
+    bgView.layer.zPosition = 0;
+#endif
     bgView.color = self.backdropColor;
     bgView.cornerRadius = self.cornerRadius;
     [self addSubview:bgView];
@@ -134,7 +183,6 @@
 -(void)_resizeBackground {
     if (self.backgroundView) {
         self.backgroundView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        self.backgroundView.center = self.center;
     }
 }
 
@@ -144,34 +192,58 @@
         [self.symbolView removeFromSuperview];
         
         //configure and add the view
+#if TARGET_OS_IPHONE
         self.symbolView.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
-        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
+#else
+        self.symbolView.autoresizingMask = (NSViewMinYMargin | NSViewMinXMargin | NSViewMaxXMargin);
+#endif
         [self addSubview:self.symbolView];
     }
 }
 
 -(void)_resizeSymbol {
     if (self.symbolView) {
-        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
+        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.bounds.size.height - self.symbolSize.height - self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);//foo is position correct?
     }
 }
 
 -(void)_addLabel {
+#if TARGET_OS_IPHONE
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kLabelSidePadding, self.bounds.size.height - kLabelHeight - self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight)];
+    
     label.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth);
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = self.textColor;
     label.textAlignment = UITextAlignmentCenter;
-    label.minimumFontSize = 8;
+    label.minimumFontSize = kLabelFontSizeMin;
     label.adjustsFontSizeToFitWidth = YES;
+    label.text = self.text ? self.text : @"";
+    label.backgroundColor = [UIColor clearColor];
+#else
+    NSTextField *label = [[NSTextField alloc] initWithFrame:CGRectMake(kLabelSidePadding, self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight)];
+    
+    label.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMaxYMargin | NSViewWidthSizable;
+    label.alignment = NSCenterTextAlignment;
+    [label shrinkTextToFitWithTargetFont:self.font andMinSize:kLabelFontSizeMin];
+    label.stringValue = self.text ? self.text : @"";
+    label.drawsBackground = NO;
+    [label setEditable:NO];
+    [label setSelectable:NO];
+    [label setBezeled:NO];
+    label.wantsLayer = YES;
+    label.layer.zPosition = 10;
+#endif
+    
+    label.textColor = self.textColor;
     label.font = self.font;
-    label.text = self.text;
     [self addSubview:label];
     self.label = label;
 }
 
 -(void)_resizeLabel {
+#if TARGET_OS_IPHONE
     self.label.frame = CGRectMake(kLabelSidePadding, self.bounds.size.height - kLabelHeight - self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight);
+#else
+    self.label.frame = CGRectMake(kLabelSidePadding, self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight);
+#endif
 }
 
 @end

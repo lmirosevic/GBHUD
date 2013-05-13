@@ -25,16 +25,24 @@
 
 #pragma mark - acc
 
--(void)setColor:(UIColor *)color {
+-(void)setColor:(GBColor *)color {
     _color = color;
     
+#if TARGET_OS_IPHONE
     [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
 }
 
 -(void)setCornerRadius:(CGFloat)cornerRadius {
     _cornerRadius = cornerRadius;
     
+#if TARGET_OS_IPHONE
     [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
 }
 
 #pragma mark - mem
@@ -42,7 +50,11 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+#if TARGET_OS_IPHONE
         self.backgroundColor = [UIColor clearColor];
+#else
+        //foo might need clear bg on OSX
+#endif
         self.cornerRadius = 0;
     }
     return self;
@@ -58,7 +70,12 @@
     [self.color setStroke];
     [self.color setFill];
     
+#if TARGET_OS_IPHONE
     UIBezierPath *rectPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) cornerRadius:self.cornerRadius];
+#else
+    NSBezierPath *rectPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(0, 0, self.bounds.size.width, self.bounds.size.height) xRadius:self.cornerRadius yRadius:self.cornerRadius];
+#endif
+    
     [rectPath fill];
 }
 

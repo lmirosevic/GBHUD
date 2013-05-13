@@ -99,6 +99,7 @@ static CGFloat const kLabelFontSizeMin = 8;
 }
 
 -(void)setSymbolView:(GBView *)symbolView {
+    //remove the old view first
     [_symbolView removeFromSuperview];
     
     _symbolView = symbolView;
@@ -107,12 +108,12 @@ static CGFloat const kLabelFontSizeMin = 8;
 }
 
 -(void)setText:(NSString *)text {
-    _text = text;
+    _text = text ? text : @"";;
     
 #if TARGET_OS_IPHONE
-    self.label.text = text;
+    self.label.text = text ? text : @"";
 #else
-    self.label.stringValue = text;
+    self.label.stringValue = text ? text : @"";
 #endif
 }
 
@@ -194,14 +195,13 @@ static CGFloat const kLabelFontSizeMin = 8;
 #else
         self.symbolView.autoresizingMask = (NSViewMinYMargin | NSViewMinXMargin | NSViewMaxXMargin);
 #endif
-        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
         [self addSubview:self.symbolView];
     }
 }
 
 -(void)_resizeSymbol {
     if (self.symbolView) {
-        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);
+        self.symbolView.frame = CGRectMake((self.bounds.size.width - self.symbolSize.width)/2.0, self.bounds.size.height - self.symbolSize.height - self.symbolTopOffset, self.symbolSize.width, self.symbolSize.height);//foo is position correct?
     }
 }
 
@@ -213,17 +213,20 @@ static CGFloat const kLabelFontSizeMin = 8;
     label.textAlignment = UITextAlignmentCenter;
     label.minimumFontSize = kLabelFontSizeMin;
     label.adjustsFontSizeToFitWidth = YES;
-    label.text = self.text;
+    label.text = self.text ? self.text : @"";
     label.backgroundColor = [UIColor clearColor];
 #else
-    NSTextField *label = [[NSTextField alloc] initWithFrame:CGRectMake(kLabelSidePadding, self.bounds.size.height - kLabelHeight - self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight)];
+    NSTextField *label = [[NSTextField alloc] initWithFrame:CGRectMake(kLabelSidePadding, self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight)];
     
     label.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMaxYMargin | NSViewWidthSizable;
     label.alignment = NSCenterTextAlignment;
-    label.stringValue = self.text;
     [label shrinkTextToFitWithTargetFont:self.font andMinSize:kLabelFontSizeMin];
-    
-    //foo might need a clear bg color
+    label.stringValue = self.text ? self.text : @"";
+    label.drawsBackground = NO;
+    [label setEditable:NO];
+    [label setSelectable:NO];
+    [label setBezeled:NO];
+//    label.us
 #endif
     
     label.textColor = self.textColor;
@@ -233,7 +236,11 @@ static CGFloat const kLabelFontSizeMin = 8;
 }
 
 -(void)_resizeLabel {
+#if TARGET_OS_IPHONE
     self.label.frame = CGRectMake(kLabelSidePadding, self.bounds.size.height - kLabelHeight - self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight);
+#else
+    self.label.frame = CGRectMake(kLabelSidePadding, self.labelBottomOffset, self.bounds.size.width - 2*kLabelSidePadding, kLabelHeight);
+#endif
 }
 
 @end

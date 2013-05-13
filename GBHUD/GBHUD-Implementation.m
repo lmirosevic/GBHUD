@@ -33,36 +33,44 @@
 #define kDefaultTextBottomOffset 8
 
 #if TARGET_OS_IPHONE
-    #define kDefaultFont [UIFont fontWithName:@"Helvetica-Bold" size:12]
+    #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [UIColor whiteColor]
     #define kDefaultForcedOrientation 0
 #else
-    #define kDefaultFont [NSFont fontWithName:@"Helvetica-Bold" size:12]
+    #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Medium" size:12]
     #define kDefaultBackdropColor [[NSColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [NSColor whiteColor]
 #endif
 
 @interface GBHUD()
 
-@property (assign, nonatomic, readwrite) BOOL isShowingHUD;
-@property (strong, nonatomic) GBHUDView *hudView;
-@property (strong, nonatomic) GBView *containerView;
-@property (strong, nonatomic) GBView *curtainView;
+@property (assign, nonatomic, readwrite) BOOL       isShowingHUD;
+@property (strong, nonatomic) GBHUDView             *hudView;
+@property (strong, nonatomic) GBView                *containerView;
+@property (strong, nonatomic) GBView                *curtainView;
+
+#if !TARGET_OS_IPHONE
+@property (strong, nonatomic, readonly) NSBundle    *resourcesBundle;
+#endif
 
 @end
 
 
 @implementation GBHUD {
-    CGSize _size;
-    CGFloat _cornerRadius;
-    CGSize _symbolSize;
-    CGFloat _symbolTopOffset;
-    CGFloat _textBottomOffset;
+    CGSize      _size;
+    CGFloat     _cornerRadius;
+    CGSize      _symbolSize;
+    CGFloat     _symbolTopOffset;
+    CGFloat     _textBottomOffset;
     
-    GBFont *_font;
-    GBColor *_backdropColor;
-    GBColor *_textColor;
+    GBFont      *_font;
+    GBColor     *_backdropColor;
+    GBColor     *_textColor;
+    
+#if !TARGET_OS_IPHONE
+    NSBundle    *_resourcesBundle;
+#endif
 }
 
 #pragma mark - custom accessors: Common
@@ -227,9 +235,21 @@
     _forcedOrientation = forcedOrientation;
     
     [self _sortOutOrientation];
-}
+
 #endif
 
+#pragma mark - lazy
+    
+#if !TARGET_OS_IPHONE
+-(NSBundle *)resourcesBundle {
+    if (!_resourcesBundle) {
+        _resourcesBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:kGBHUDResourcesBundleName ofType:@""]];
+    }
+    
+    return _resourcesBundle;
+}
+#endif
+    
 #pragma mark - memory
 
 +(GBHUD *)sharedHUD {
@@ -295,8 +315,10 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]]];
         imageView.contentMode = UIViewContentModeCenter;
 #else
-        NSImageView *imageView = [[NSImageView alloc] init];
-        NSImage *image = [NSImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]];
+        NSString *imagePath = [self.resourcesBundle pathForImageResource:name];
+        NSImage *image = [[NSImage alloc] initWithContentsOfFile:imagePath];
+        
+        NSImageView *imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, image.size.width, image.size.height)];
         imageView.image = image;
         imageView.imageAlignment = NSImageAlignCenter;
 #endif
@@ -310,7 +332,7 @@
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             [spinner startAnimating];
 #else
-            NSProgressIndicator *spinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(0, 0, 40, 40)];
+            NSProgressIndicator *spinner = [[NSProgressIndicator alloc] init];
             spinner.style = NSProgressIndicatorSpinningStyle;
             //foo make your own spinner
             [spinner startAnimation:self];

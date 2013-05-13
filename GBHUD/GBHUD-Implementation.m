@@ -22,6 +22,8 @@
 
 #import "GBHUDShims.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define kAnimationDuration 0.2
 #define kDefaultDisableUserInteraction YES
 #define kDefaultCurtainOpacity 0.3
@@ -38,38 +40,42 @@
     #define kDefaultTextColor [UIColor whiteColor]
     #define kDefaultForcedOrientation 0
 #else
-    #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Medium" size:12]
+    #define kDefaultPositioning GBHUDPositioningCenterInMainWindow
+    #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[NSColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [NSColor whiteColor]
 #endif
 
 @interface GBHUD()
 
-@property (assign, nonatomic, readwrite) BOOL       isShowingHUD;
-@property (strong, nonatomic) GBHUDView             *hudView;
-@property (strong, nonatomic) GBView                *containerView;
-@property (strong, nonatomic) GBView                *curtainView;
+@property (assign, nonatomic, readwrite) BOOL                   isShowingHUD;
+@property (strong, nonatomic) GBHUDView                         *hudView;
+@property (strong, nonatomic) GBView                            *containerView;
+@property (strong, nonatomic) GBView                            *curtainView;
 
 #if !TARGET_OS_IPHONE
-@property (strong, nonatomic, readonly) NSBundle    *resourcesBundle;
+@property (strong, nonatomic, readonly) NSBundle                *resourcesBundle;
+@property (strong, nonatomic) NSProgressIndicator               *spinner;
+@property (strong, nonatomic,readonly) NSWindow                 *popupWindow;
 #endif
 
 @end
 
 
 @implementation GBHUD {
-    CGSize      _size;
-    CGFloat     _cornerRadius;
-    CGSize      _symbolSize;
-    CGFloat     _symbolTopOffset;
-    CGFloat     _textBottomOffset;
+    CGSize                  _size;
+    CGFloat                 _cornerRadius;
+    CGSize                  _symbolSize;
+    CGFloat                 _symbolTopOffset;
+    CGFloat                 _textBottomOffset;
     
-    GBFont      *_font;
-    GBColor     *_backdropColor;
-    GBColor     *_textColor;
+    GBFont                  *_font;
+    GBColor                 *_backdropColor;
+    GBColor                 *_textColor;
     
 #if !TARGET_OS_IPHONE
-    NSBundle    *_resourcesBundle;
+    NSBundle                *_resourcesBundle;
+    NSWindow                *_popupWindow;
 #endif
 }
 
@@ -131,16 +137,13 @@
     
     self.hudView.cornerRadius = cornerRadius;
 }
-
+#if TARGET_OS_IPHONE
 -(void)setDisableUserInteraction:(BOOL)disableUserInteraction {
     _disableUserInteraction = disableUserInteraction;
     
-#if TARGET_OS_IPHONE
     self.containerView.userInteractionEnabled = disableUserInteraction;
-#else
-    //foo todo
-#endif
 }
+#endif
 
 -(void)setSymbolSize:(CGSize)symbolSize {
     _symbolSize = symbolSize;
@@ -161,9 +164,9 @@
 }
 
 -(void)setShowCurtain:(BOOL)showCurtain {
+#if TARGET_OS_IPHONE
     _showCurtain = showCurtain;
     
-#if TARGET_OS_IPHONE
     if (showCurtain) {
         self.curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
     }
@@ -171,17 +174,17 @@
         self.curtainView.backgroundColor = [UIColor clearColor];
     }
 #else
-    //foo todo darken the window... to the window
+//  currently does nothing on iOS
 #endif
 }
 
 -(void)setCurtainOpacity:(CGFloat)curtainOpacity {
-    _curtainOpacity = curtainOpacity;
-
 #if TARGET_OS_IPHONE
+    _curtainOpacity = curtainOpacity;
+    
     self.curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
 #else
-    //foo todo darken the window... to the window
+//  currently do nothing on OSX
 #endif
 }
 
@@ -248,6 +251,32 @@
     
     return _resourcesBundle;
 }
+    
+-(NSProgressIndicator *)spinner {
+    if (!_spinner) {
+        _spinner = [[NSProgressIndicator alloc] init];
+        _spinner.style = NSProgressIndicatorSpinningStyle;
+        _spinner.wantsLayer = YES;
+        _spinner.layer.zPosition = 10;
+        _spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
+        _spinner.frame = NSMakeRect(0, 0, 32, 32);
+    }
+    
+    [_spinner startAnimation:self];
+    
+    return _spinner;
+}
+    
+-(NSWindow *)popupWindow {
+    if (!_popupWindow) {
+        _popupWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0,0,0,0) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+        [_popupWindow setOpaque:NO];
+        _popupWindow.backgroundColor = [NSColor clearColor];
+        ((NSView *)_popupWindow.contentView).wantsLayer = YES;
+    }
+    
+    return _popupWindow;
+}
 #endif
     
 #pragma mark - memory
@@ -275,9 +304,11 @@
         self.textColor = nil;
         self.showCurtain = kDefaultShowCurtain;
         self.curtainOpacity = kDefaultCurtainOpacity;
-        self.disableUserInteraction = kDefaultDisableUserInteraction;
 #if TARGET_OS_IPHONE
+        self.disableUserInteraction = kDefaultDisableUserInteraction;
         self.forcedOrientation = kDefaultForcedOrientation;
+#else
+        self.positioning = kDefaultPositioning;
 #endif
 
         //set up listening to orientation changes
@@ -292,7 +323,11 @@
 
 -(void)dealloc {
     [self dismissHUDAnimated:NO];
-    
+#if !TARGET_OS_IPHONE
+    _popupWindow = nil;
+#endif
+    [self.spinner stopAnimation:self];
+    self.spinner = nil;
     self.hudView = nil;
     self.containerView = nil;
     self.curtainView = nil;
@@ -334,8 +369,14 @@
 #else
             NSProgressIndicator *spinner = [[NSProgressIndicator alloc] init];
             spinner.style = NSProgressIndicatorSpinningStyle;
-            //foo make your own spinner
+            spinner.wantsLayer = YES;
+            spinner.layer.zPosition = 10;
+            spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
+            spinner.frame = NSMakeRect(0, 0, 32, 32);
+            
             [spinner startAnimation:self];
+            
+            self.spinner = spinner;
 #endif
             symbolView = spinner;
         } break;
@@ -397,6 +438,13 @@
         NSView *targetView = [[NSApplication sharedApplication] keyWindow].contentView;
 #endif
         
+        
+#if !TARGET_OS_IPHONE
+        //make sure the symbolview has the right zOrder
+        symbolView.wantsLayer = YES;
+        symbolView.layer.zPosition = 10;
+#endif
+        
         //create the hud view
         GBHUDView *newHUD = [[GBHUDView alloc] initWithFrame:CGRectMake(0, 0, self.size.width, self.size.height)];
 #if TARGET_OS_IPHONE
@@ -423,8 +471,27 @@
 #endif
         [containerView addSubview:newHUD];
         
+#if TARGET_OS_IPHONE
         //center the hud in the container
         newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+#else
+        if (self.positioning == GBHUDPositioningCenterInMainWindow) {
+            //center the hud in the container
+            newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+        }
+        else if (self.positioning == GBHUDPositioningCenterOnMainScreen) {
+            newHUD.frame = CGRectMake(0, 0, newHUD.frame.size.width, newHUD.frame.size.height);
+            
+            NSRect screenRect = [NSScreen mainScreen].visibleFrame;
+            NSRect contentRect = CGRectMake((screenRect.size.width-newHUD.frame.size.width)*0.5, (screenRect.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+            
+            [self.popupWindow.contentView setSubviews:@[]];
+            [self.popupWindow.contentView addSubview:newHUD];
+            
+            [self.popupWindow setFrame:contentRect display:YES];
+            [self.popupWindow makeKeyAndOrderFront:self];
+        }
+#endif
         
         //create the curtain view and add the container to it
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
@@ -439,6 +506,7 @@
         curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         curtainView.userInteractionEnabled = self.disableUserInteraction;
 #else
+//        [targetView setContentFilters:@[[CIFilter filterWithName:@""]]];
         //foo todo, set the color of the curtain view, like above
         curtainView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
         //foo todo add the user interaction stuff to the mac version, like above
@@ -505,6 +573,11 @@
 -(void)dismissHUDAnimated:(BOOL)animated {
     if (self.isShowingHUD) {
         void(^completedBlock)(void) = ^{
+            //if we had a spinner, kill it because it gets fucked up when placed in a window that goes in and out of focus
+            [self.spinner stopAnimation:self];
+            [self.spinner removeFromSuperview];
+            
+            [self.popupWindow orderOut:self];
             [self.curtainView removeFromSuperview];
             self.containerView = nil;
             self.hudView = nil;

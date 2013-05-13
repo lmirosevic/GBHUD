@@ -19,12 +19,14 @@
 
 #import "GBHUDTypes.h"
 
+typedef enum {
+    GBHUDPositioningCenterInMainWindow,
+    GBHUDPositioningCenterOnMainScreen,
+} GBHUDPositioning;
+
 @interface GBHUD : NSObject
 
 @property (assign, nonatomic, readonly) BOOL            isShowingHUD;
-@property (assign, nonatomic) BOOL                      disableUserInteraction;
-@property (assign, nonatomic) BOOL                      showCurtain;
-@property (assign, nonatomic) CGFloat                   curtainOpacity;
 @property (assign, nonatomic) CGSize                    size;
 @property (assign, nonatomic) CGFloat                   cornerRadius;
 @property (assign, nonatomic) CGSize                    symbolSize;
@@ -33,6 +35,7 @@
 @property (strong, nonatomic) NSFont                    *font;
 @property (strong, nonatomic) NSColor                   *backdropColor;
 @property (strong, nonatomic) NSColor                   *textColor;
+@property (assign, nonatomic) GBHUDPositioning          positioning;
 
 +(GBHUD *)sharedHUD;
 

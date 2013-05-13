@@ -171,6 +171,8 @@ static CGFloat const kLabelFontSizeMin = 8;
     bgView.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
 #else
     bgView.autoresizingMask = (NSViewHeightSizable | NSViewWidthSizable);
+    bgView.wantsLayer = YES;
+    bgView.layer.zPosition = 0;
 #endif
     bgView.color = self.backdropColor;
     bgView.cornerRadius = self.cornerRadius;
@@ -226,7 +228,8 @@ static CGFloat const kLabelFontSizeMin = 8;
     [label setEditable:NO];
     [label setSelectable:NO];
     [label setBezeled:NO];
-//    label.us
+    label.wantsLayer = YES;
+    label.layer.zPosition = 10;
 #endif
     
     label.textColor = self.textColor;

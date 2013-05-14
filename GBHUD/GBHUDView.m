@@ -140,8 +140,10 @@ static CGFloat const kLabelFontSizeMin = 8;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+#if !TARGET_OS_IPHONE
         self.wantsLayer = YES;
         self.layer.zPosition = 1000;
+#endif
         
         //add and draw subviews
         [self _addBackground];

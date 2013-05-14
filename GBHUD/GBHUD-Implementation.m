@@ -255,6 +255,7 @@
 -(NSWindow *)popupWindow {
     if (!_popupWindow) {
         _popupWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0,0,0,0) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+        [_popupWindow setLevel:NSPopUpMenuWindowLevel];
         [_popupWindow setOpaque:NO];
         _popupWindow.backgroundColor = [NSColor clearColor];
         ((NSView *)_popupWindow.contentView).wantsLayer = YES;
@@ -329,69 +330,71 @@
 }
 
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated {
-    __block GBView *symbolView;
+    if (!self.isShowingHUD) {
+        __block GBView *symbolView;
    
-    void(^prepareView)(NSString *name) = ^(NSString *name) {
+        void(^prepareView)(NSString *name) = ^(NSString *name) {
 #if TARGET_OS_IPHONE
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]]];
-        imageView.contentMode = UIViewContentModeCenter;
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]]];
+            imageView.contentMode = UIViewContentModeCenter;
 #else
-        NSString *imagePath = [self.resourcesBundle pathForImageResource:name];
-        NSImage *image = [[NSImage alloc] initWithContentsOfFile:imagePath];
-        
-        NSImageView *imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, image.size.width, image.size.height)];
-        imageView.image = image;
-        imageView.imageAlignment = NSImageAlignCenter;
+            NSString *imagePath = [self.resourcesBundle pathForImageResource:name];
+            NSImage *image = [[NSImage alloc] initWithContentsOfFile:imagePath];
+            
+            NSImageView *imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, image.size.width, image.size.height)];
+            imageView.image = image;
+            imageView.imageAlignment = NSImageAlignCenter;
 #endif
+            
+            symbolView = imageView;
+        };
         
-        symbolView = imageView;
-    };
-    
-    switch (type) {
-        case GBHUDTypeLoading: {
+        switch (type) {
+            case GBHUDTypeLoading: {
 #if TARGET_OS_IPHONE
-            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            [spinner startAnimating];
+                UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                [spinner startAnimating];
 #else
-            NSProgressIndicator *spinner = [[NSProgressIndicator alloc] init];
-            spinner.style = NSProgressIndicatorSpinningStyle;
-            spinner.wantsLayer = YES;
-            spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
-            spinner.frame = NSMakeRect(0, 0, 32, 32);
-            
-            [spinner startAnimation:self];
-            
-            self.spinner = spinner;
+                NSProgressIndicator *spinner = [[NSProgressIndicator alloc] init];
+                spinner.style = NSProgressIndicatorSpinningStyle;
+                spinner.wantsLayer = YES;
+                spinner.contentFilters = @[[CIFilter filterWithName:@"CIColorInvert"]];
+                spinner.frame = NSMakeRect(0, 0, 32, 32);
+                
+                [spinner startAnimation:self];
+                
+                self.spinner = spinner;
 #endif
-            symbolView = spinner;
-        } break;
-            
-        case GBHUDTypeError: {
-            prepareView(@"GBHUDSymbolError");
-        } break;
-            
-        case GBHUDTypeSuccess: {
-            prepareView(@"GBHUDSymbolSuccess");
-        } break;
-            
-        case GBHUDTypeExplosion: {
-            prepareView(@"GBHUDSymbolExplosion");
-        } break;
-            
-        case GBHUDTypeInfo: {
-            prepareView(@"GBHUDSymbolInfo");
-        } break;
-            
-        case GBHUDTypeSleep: {
-            prepareView(@"GBHUDSymbolSleep");
-        } break;
-            
-        default:
-            break;
-    }
-    
-    if (symbolView) {
-        [self showHUDWithView:symbolView text:text animated:animated];
+                symbolView = spinner;
+            } break;
+                
+            case GBHUDTypeError: {
+                prepareView(@"GBHUDSymbolError");
+            } break;
+                
+            case GBHUDTypeSuccess: {
+                prepareView(@"GBHUDSymbolSuccess");
+            } break;
+                
+            case GBHUDTypeExplosion: {
+                prepareView(@"GBHUDSymbolExplosion");
+            } break;
+                
+            case GBHUDTypeInfo: {
+                prepareView(@"GBHUDSymbolInfo");
+            } break;
+                
+            case GBHUDTypeSleep: {
+                prepareView(@"GBHUDSymbolSleep");
+            } break;
+                
+            default:
+                break;
+        }
+        
+        if (symbolView) {
+            [self showHUDWithView:symbolView text:text animated:animated];
+        }
     }
 }
 
@@ -400,14 +403,16 @@
 }
 
 -(void)showHUDWithImage:(GBImage *)image text:(NSString *)text animated:(BOOL)animated {
+    if (!self.isShowingHUD) {
 #if TARGET_OS_IPHONE
-    UIImageView *symbolImageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *symbolImageView = [[UIImageView alloc] initWithImage:image];
 #else
-    NSImageView *symbolImageView = [[NSImageView alloc] init];
-    [symbolImageView setImage:image];
+        NSImageView *symbolImageView = [[NSImageView alloc] init];
+        [symbolImageView setImage:image];
 #endif
     
-    [self showHUDWithView:symbolImageView text:text animated:animated];
+        [self showHUDWithView:symbolImageView text:text animated:animated];
+    }
 }
 
 -(void)showHUDWithView:(GBView *)symbolView text:(NSString *)text {
@@ -416,26 +421,16 @@
 
 -(void)showHUDWithView:(GBView *)symbolView text:(NSString *)text animated:(BOOL)animated {
     if (!self.isShowingHUD) {
-        //fetch the target view which the entire hud view will be added to
-#if TARGET_OS_IPHONE
-        UIView *targetView = [[UIApplication sharedApplication] keyWindow];
-#else
-        NSView *targetView = [[NSApplication sharedApplication] keyWindow].contentView;
-#endif
-        
-        
-#if !TARGET_OS_IPHONE
-        //make sure the symbolview has the right zOrder
-        symbolView.wantsLayer = YES;
-        symbolView.layer.zPosition = 1003;
-#endif
-        
         //create the hud view
         GBHUDView *newHUD = [[GBHUDView alloc] initWithFrame:CGRectMake(0, 0, self.size.width, self.size.height)];
 #if TARGET_OS_IPHONE
         newHUD.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
 #else
         newHUD.autoresizingMask = (NSViewMinXMargin | NSViewMaxXMargin | NSViewMaxYMargin | NSViewMinYMargin);
+        
+        //make sure the symbolview has the right zOrder
+        symbolView.wantsLayer = YES;
+        symbolView.layer.zPosition = 1003;
 #endif
         newHUD.symbolView = symbolView;
         newHUD.text = text;
@@ -447,24 +442,77 @@
         newHUD.labelBottomOffset = self.textBottomOffset;
         newHUD.cornerRadius = self.cornerRadius;
         
+#if TARGET_OS_IPHONE
+        //fetch the target view which the entire hud view will be added to
+        UIView *targetView = [[UIApplication sharedApplication] keyWindow];
+        
         //create the container and add the hud to it
         GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds
-#if TARGET_OS_IPHONE
         containerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-#else
-        containerView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
-#endif
         [containerView addSubview:newHUD];
         
-#if TARGET_OS_IPHONE
         //center the hud in the container
         newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+        
+        
+        //create the curtain view and add the container to it
+        GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
+
+        if (self.showCurtain) {
+            curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
+        }
+        else {
+            curtainView.backgroundColor = [UIColor clearColor];
+        }
+        
+        curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        curtainView.userInteractionEnabled = self.disableUserInteraction;
+        
+        [curtainView addSubview:containerView];
+        
+        //draw the view
+        [targetView addSubview:curtainView];
+        
+        //sort out orientation
+        [self _sortOutOrientation];
+        
+        //store in properties
+        self.containerView = containerView;
+        self.curtainView = curtainView;
 #else
-        if (self.positioning == GBHUDPositioningCenterInMainWindow) {
+        //only show it in the window if its visible
+        if (self.positioning == GBHUDPositioningCenterInMainWindow && [[[NSApplication sharedApplication] keyWindow] isVisible]) {
+            //fetch the target view which the entire hud view will be added to
+            NSView *targetView = [[NSApplication sharedApplication] keyWindow].contentView;
+            
+            //create the container and add the hud to it
+            GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds
+            
+            containerView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
+            [containerView addSubview:newHUD];
+            
             //center the hud in the container
             newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+            
+            //create the curtain view and add the container to it
+            GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
+            
+            //todo, set the color of the curtain view, like above if I implement it
+            curtainView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
+            //todo add the user interaction blocking stuff to the mac version, like above, if I choose to implement it
+            
+            [curtainView addSubview:containerView];
+            
+            //draw the view
+            [targetView addSubview:curtainView];
+            
+            
+            //store in properties
+            self.containerView = containerView;
+            self.curtainView = curtainView;
         }
-        else if (self.positioning == GBHUDPositioningCenterOnMainScreen) {
+        //show on screen
+        else {
             newHUD.frame = CGRectMake(0, 0, newHUD.frame.size.width, newHUD.frame.size.height);
             
             NSRect screenRect = [NSScreen mainScreen].visibleFrame;
@@ -478,37 +526,8 @@
         }
 #endif
         
-        //create the curtain view and add the container to it
-        GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
-#if TARGET_OS_IPHONE
-        if (self.showCurtain) {
-            curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
-        }
-        else {
-            curtainView.backgroundColor = [UIColor clearColor];
-        }
-        
-        curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-        curtainView.userInteractionEnabled = self.disableUserInteraction;
-#else
-        //todo, set the color of the curtain view, like above if I implement it
-        curtainView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
-        //todo add the user interaction stuff to the mac version, like above, if i implement it
-#endif
-        [curtainView addSubview:containerView];
-        
-        //draw the view
-        [targetView addSubview:curtainView];
-        
         //store in properties
         self.hudView = newHUD;
-        self.containerView = containerView;
-        self.curtainView = curtainView;
-        
-#if TARGET_OS_IPHONE
-        //sort out orientation
-        [self _sortOutOrientation];
-#endif
         
         //set flag
         self.isShowingHUD = YES;

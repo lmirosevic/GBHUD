@@ -24,26 +24,26 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define kAnimationDuration 0.2
-#define kDefaultDisableUserInteraction YES
-#define kDefaultCurtainOpacity 0.3
-#define kDefaultShowCurtain YES
-#define kDefaultSize (CGSize){110, 110}
-#define kDefaultCornerRadius 8
-#define kDefaultSymbolSize (CGSize){60, 60}
-#define kDefaultSymbolTopOffset 16
-#define kDefaultTextBottomOffset 8
+static CGFloat const kAnimationDuration = 0.2;
+static BOOL const kDefaultDisableUserInteraction = YES;
+static CGFloat const kDefaultCurtainOpacity = 0.3;
+static BOOL const kDefaultShowCurtain = YES;
+static CGSize const kDefaultSize = (CGSize){110, 110};
+static CGFloat const kDefaultCornerRadius = 8;
+static CGSize const kDefaultSymbolSize = (CGSize){60, 60};
+static CGFloat const kDefaultSymbolTopOffset = 16;
+static CGFloat const kDefaultTextBottomOffset = 8;
 
 #if TARGET_OS_IPHONE
     #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [UIColor whiteColor]
-    #define kDefaultForcedOrientation 0
+    static UIInterfaceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
 #else
-    #define kDefaultPositioning GBHUDPositioningCenterInMainWindow
     #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[NSColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [NSColor whiteColor]
+    static GBHUDPositioning const kDefaultPositioning = GBHUDPositioningCenterInMainWindow;
 #endif
 
 @interface GBHUD()

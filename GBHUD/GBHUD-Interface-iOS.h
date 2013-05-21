@@ -33,7 +33,6 @@
 @property (strong, nonatomic) UIFont                    *font;
 @property (strong, nonatomic) UIColor                   *backdropColor;
 @property (strong, nonatomic) UIColor                   *textColor;
-@property (assign, nonatomic) UIInterfaceOrientation    forcedOrientation;
 
 +(GBHUD *)sharedHUD;
 
@@ -52,5 +51,8 @@
 
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text;
 -(void)autoDismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated;
+
+-(void)enableForcedOrientation:(UIInterfaceOrientation)forcedOrientation;
+-(void)disableForcedOrientation;
 
 @end

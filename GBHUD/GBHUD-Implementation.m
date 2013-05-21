@@ -53,7 +53,10 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 @property (strong, nonatomic) GBView                            *containerView;
 @property (strong, nonatomic) GBView                            *curtainView;
 
-#if !TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
+@property (assign, nonatomic) UIInterfaceOrientation            privateForcedOrientation;
+@property (assign, nonatomic) BOOL                              isForcedOrientationEnabled;
+#else
 @property (strong, nonatomic) NSProgressIndicator               *spinner;
 @property (strong, nonatomic, readonly) NSBundle                *resourcesBundle;
 @property (strong, nonatomic,readonly) NSWindow                 *popupWindow;
@@ -79,7 +82,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #endif
 }
 
-#pragma mark - custom accessors: Common
+#pragma mark - custom accessors
 
 -(CGFloat)cornerRadius {
     if (_cornerRadius == 0) {
@@ -233,11 +236,17 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     self.hudView.textColor = textColor;
 }
 
+#pragma mark - orientation
+
 #if TARGET_OS_IPHONE
--(void)setForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
-    _forcedOrientation = forcedOrientation;
+-(void)enableForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
+    self.privateForcedOrientation = forcedOrientation;
+    self.isForcedOrientationEnabled = YES;
     
     [self _sortOutOrientation];
+}
+-(void)disableForcedOrientation {
+    self.isForcedOrientationEnabled = NO;
 }
 #endif
 
@@ -292,7 +301,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         self.curtainOpacity = kDefaultCurtainOpacity;
 #if TARGET_OS_IPHONE
         self.disableUserInteraction = kDefaultDisableUserInteraction;
-        self.forcedOrientation = kDefaultForcedOrientation;
+        self.isForcedOrientationEnabled = NO;
 #else
         self.positioning = kDefaultPositioning;
 #endif
@@ -308,6 +317,8 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 }
 
 -(void)dealloc {
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self dismissHUDAnimated:NO];
     
 #if !TARGET_OS_IPHONE
@@ -477,12 +488,15 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //draw the view
         [targetView addSubview:curtainView];
         
-        //sort out orientation
-        [self _sortOutOrientation];
+        //foo unsure
+        self.containerView = containerView;
         
         //store in properties
         self.containerView = containerView;
         self.curtainView = curtainView;
+        
+        //sort out orientation
+        [self _sortOutOrientation];
 #else
         //only show it in the window if its visible
         if (self.positioning == GBHUDPositioningCenterInMainWindow && [[[NSApplication sharedApplication] keyWindow] isVisible]) {
@@ -640,8 +654,8 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
     
     //if its forced override the orientation
-    if (self.forcedOrientation) {
-        currentOrientation = self.forcedOrientation;
+    if (self.isForcedOrientationEnabled) {
+        currentOrientation = self.privateForcedOrientation;
     }
     
     //rotate it

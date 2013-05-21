@@ -372,6 +372,10 @@ static CGFloat const kDefaultTextBottomOffset = 8;
                 prepareView(@"GBHUDSymbolError");
             } break;
                 
+            case GBHUDTypeCross: {
+                prepareView(@"GBHUDSymbolCross");
+            } break;
+                
             case GBHUDTypeSuccess: {
                 prepareView(@"GBHUDSymbolSuccess");
             } break;

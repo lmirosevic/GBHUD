@@ -10,8 +10,6 @@
 		8A0A37471740B78D0004D345 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
 		8A0A378E1740C4FB0004D345 /* GBHUDSymbolSleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */; };
 		8A0A378F1740C4FB0004D345 /* GBHUDSymbolSleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */; };
-		8A0A37901740C4FB0004D345 /* GBHUDSymbolSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */; };
-		8A0A37911740C4FB0004D345 /* GBHUDSymbolSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */; };
 		8A0A37921740C4FB0004D345 /* GBHUDSymbolError.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */; };
 		8A0A37931740C4FB0004D345 /* GBHUDSymbolError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */; };
 		8A0A37941740C4FB0004D345 /* GBHUDSymbolExplosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */; };
@@ -19,6 +17,14 @@
 		8A0A37961740C4FB0004D345 /* GBHUDSymbolInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */; };
 		8A0A37971740C4FB0004D345 /* GBHUDSymbolInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A589165CFA1A005601FC /* GBHUDSymbolInfo@2x.png */; };
 		8A0A37991740CD260004D345 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0A37981740CD260004D345 /* QuartzCore.framework */; };
+		8A30DF69174BA59D002530BB /* GBHUDSymbolCross.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF65174BA59C002530BB /* GBHUDSymbolCross.png */; };
+		8A30DF6A174BA59D002530BB /* GBHUDSymbolCross.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF65174BA59C002530BB /* GBHUDSymbolCross.png */; };
+		8A30DF6B174BA59D002530BB /* GBHUDSymbolCross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF66174BA59D002530BB /* GBHUDSymbolCross@2x.png */; };
+		8A30DF6C174BA59D002530BB /* GBHUDSymbolCross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF66174BA59D002530BB /* GBHUDSymbolCross@2x.png */; };
+		8A30DF6D174BA59D002530BB /* GBHUDSymbolSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF67174BA59D002530BB /* GBHUDSymbolSuccess.png */; };
+		8A30DF6E174BA59D002530BB /* GBHUDSymbolSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF67174BA59D002530BB /* GBHUDSymbolSuccess.png */; };
+		8A30DF6F174BA59D002530BB /* GBHUDSymbolSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF68174BA59D002530BB /* GBHUDSymbolSuccess@2x.png */; };
+		8A30DF70174BA59D002530BB /* GBHUDSymbolSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30DF68174BA59D002530BB /* GBHUDSymbolSuccess@2x.png */; };
 		8A4CE3AE165CB7E30043DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4CE3AD165CB7E30043DF4A /* Foundation.framework */; };
 		8A4CE3B3165CB7E30043DF4A /* GBHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4CE3B2165CB7E30043DF4A /* GBHUD.h */; };
 		8A4CE3B5165CB7E30043DF4A /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
@@ -27,8 +33,6 @@
 		8AA7A5C7165D051C005601FC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
 		8AA7A5D2165D057C005601FC /* GBHUDSymbolSleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */; };
 		8AA7A5D3165D057C005601FC /* GBHUDSymbolSleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */; };
-		8AA7A5D4165D057C005601FC /* GBHUDSymbolSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */; };
-		8AA7A5D5165D057C005601FC /* GBHUDSymbolSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */; };
 		8AA7A5D6165D057C005601FC /* GBHUDSymbolError.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */; };
 		8AA7A5D7165D057C005601FC /* GBHUDSymbolError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */; };
 		8AA7A5D8165D057C005601FC /* GBHUDSymbolExplosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */; };
@@ -65,6 +69,10 @@
 /* Begin PBXFileReference section */
 		8A0A37461740B78D0004D345 /* GBHUDResources-OSX.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GBHUDResources-OSX.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0A37981740CD260004D345 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		8A30DF65174BA59C002530BB /* GBHUDSymbolCross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolCross.png; sourceTree = "<group>"; };
+		8A30DF66174BA59D002530BB /* GBHUDSymbolCross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolCross@2x.png"; sourceTree = "<group>"; };
+		8A30DF67174BA59D002530BB /* GBHUDSymbolSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSuccess.png; sourceTree = "<group>"; };
+		8A30DF68174BA59D002530BB /* GBHUDSymbolSuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolSuccess@2x.png"; sourceTree = "<group>"; };
 		8A4CE3AA165CB7E30043DF4A /* libGBHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4CE3AD165CB7E30043DF4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4CE3B1165CB7E30043DF4A /* GBHUD-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-iOS-Prefix.pch"; sourceTree = "<group>"; };
@@ -77,7 +85,6 @@
 		8AA7A578165CBB08005601FC /* GBHUDBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBHUDBackgroundView.h; sourceTree = "<group>"; };
 		8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBHUDBackgroundView.m; sourceTree = "<group>"; };
 		8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolSleep@2x.png"; sourceTree = "<group>"; };
-		8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolSuccess@2x.png"; sourceTree = "<group>"; };
 		8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolError.png; sourceTree = "<group>"; };
 		8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolExplosion.png; sourceTree = "<group>"; };
 		8AA7A588165CFA1A005601FC /* GBHUDSymbolInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolInfo.png; sourceTree = "<group>"; };
@@ -85,7 +92,6 @@
 		8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSleep.png; sourceTree = "<group>"; };
 		8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolError@2x.png"; sourceTree = "<group>"; };
 		8AA7A58C165CFA1A005601FC /* GBHUDSymbolExplosion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GBHUDSymbolExplosion@2x.png"; sourceTree = "<group>"; };
-		8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GBHUDSymbolSuccess.png; sourceTree = "<group>"; };
 		8AA7A5C5165D051C005601FC /* GBHUDResources-iOS.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GBHUDResources-iOS.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA7A5C6165D051C005601FC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8AA7A5CA165D051C005601FC /* GBHUDResources-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUDResources-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -196,10 +202,12 @@
 		8AA7A58E165CFA1E005601FC /* Symbols */ = {
 			isa = PBXGroup;
 			children = (
+				8A30DF65174BA59C002530BB /* GBHUDSymbolCross.png */,
+				8A30DF66174BA59D002530BB /* GBHUDSymbolCross@2x.png */,
+				8A30DF67174BA59D002530BB /* GBHUDSymbolSuccess.png */,
+				8A30DF68174BA59D002530BB /* GBHUDSymbolSuccess@2x.png */,
 				8AA7A584165CFA1A005601FC /* GBHUDSymbolSleep@2x.png */,
 				8AA7A58A165CFA1A005601FC /* GBHUDSymbolSleep.png */,
-				8AA7A58D165CFA1A005601FC /* GBHUDSymbolSuccess.png */,
-				8AA7A585165CFA1A005601FC /* GBHUDSymbolSuccess@2x.png */,
 				8AA7A586165CFA1A005601FC /* GBHUDSymbolError.png */,
 				8AA7A58B165CFA1A005601FC /* GBHUDSymbolError@2x.png */,
 				8AA7A587165CFA1A005601FC /* GBHUDSymbolExplosion.png */,
@@ -382,14 +390,16 @@
 			files = (
 				8A0A378E1740C4FB0004D345 /* GBHUDSymbolSleep@2x.png in Resources */,
 				8A0A378F1740C4FB0004D345 /* GBHUDSymbolSleep.png in Resources */,
-				8A0A37901740C4FB0004D345 /* GBHUDSymbolSuccess.png in Resources */,
-				8A0A37911740C4FB0004D345 /* GBHUDSymbolSuccess@2x.png in Resources */,
 				8A0A37921740C4FB0004D345 /* GBHUDSymbolError.png in Resources */,
 				8A0A37931740C4FB0004D345 /* GBHUDSymbolError@2x.png in Resources */,
 				8A0A37941740C4FB0004D345 /* GBHUDSymbolExplosion.png in Resources */,
 				8A0A37951740C4FB0004D345 /* GBHUDSymbolExplosion@2x.png in Resources */,
 				8A0A37961740C4FB0004D345 /* GBHUDSymbolInfo.png in Resources */,
 				8A0A37971740C4FB0004D345 /* GBHUDSymbolInfo@2x.png in Resources */,
+				8A30DF6A174BA59D002530BB /* GBHUDSymbolCross.png in Resources */,
+				8A30DF6C174BA59D002530BB /* GBHUDSymbolCross@2x.png in Resources */,
+				8A30DF6E174BA59D002530BB /* GBHUDSymbolSuccess.png in Resources */,
+				8A30DF70174BA59D002530BB /* GBHUDSymbolSuccess@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,14 +409,16 @@
 			files = (
 				8AA7A5D2165D057C005601FC /* GBHUDSymbolSleep.png in Resources */,
 				8AA7A5D3165D057C005601FC /* GBHUDSymbolSleep@2x.png in Resources */,
-				8AA7A5D4165D057C005601FC /* GBHUDSymbolSuccess.png in Resources */,
-				8AA7A5D5165D057C005601FC /* GBHUDSymbolSuccess@2x.png in Resources */,
 				8AA7A5D6165D057C005601FC /* GBHUDSymbolError.png in Resources */,
 				8AA7A5D7165D057C005601FC /* GBHUDSymbolError@2x.png in Resources */,
 				8AA7A5D8165D057C005601FC /* GBHUDSymbolExplosion.png in Resources */,
 				8AA7A5D9165D057C005601FC /* GBHUDSymbolExplosion@2x.png in Resources */,
 				8AA7A5DA165D057C005601FC /* GBHUDSymbolInfo.png in Resources */,
 				8AA7A5DB165D057C005601FC /* GBHUDSymbolInfo@2x.png in Resources */,
+				8A30DF69174BA59D002530BB /* GBHUDSymbolCross.png in Resources */,
+				8A30DF6B174BA59D002530BB /* GBHUDSymbolCross@2x.png in Resources */,
+				8A30DF6D174BA59D002530BB /* GBHUDSymbolSuccess.png in Resources */,
+				8A30DF6F174BA59D002530BB /* GBHUDSymbolSuccess@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

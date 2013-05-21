@@ -24,6 +24,7 @@ typedef enum {
     GBHUDTypeLoading,
     GBHUDTypeSuccess,
     GBHUDTypeError,
+    GBHUDTypeCross,
     GBHUDTypeSleep,
     GBHUDTypeExplosion,
     GBHUDTypeInfo,

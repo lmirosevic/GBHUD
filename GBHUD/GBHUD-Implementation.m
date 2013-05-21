@@ -620,7 +620,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     //to make sure we only close the HUD which is currently shown, not any potential future ones
     GBHUDView *hudView = self.hudView;
     
-    int64_t delayInSeconds = delay;
+    CGFloat delayInSeconds = delay;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if (self.isShowingHUD && (hudView == self.hudView)) {

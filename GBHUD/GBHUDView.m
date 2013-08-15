@@ -108,7 +108,7 @@ static CGFloat const kLabelFontSizeMin = 8;
 }
 
 -(void)setText:(NSString *)text {
-    _text = text ? text : @"";;
+    _text = text ? text : @"";
     
 #if TARGET_OS_IPHONE
     self.label.text = text ? text : @"";

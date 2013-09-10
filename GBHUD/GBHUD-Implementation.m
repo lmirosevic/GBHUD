@@ -488,7 +488,6 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //draw the view
         [targetView addSubview:curtainView];
         
-        //foo unsure
         self.containerView = containerView;
         
         //store in properties

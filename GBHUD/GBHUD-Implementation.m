@@ -317,8 +317,11 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 }
 
 -(void)dealloc {
+#if TARGET_OS_IPHONE
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+#endif
+    
     [self dismissHUDAnimated:NO];
     
 #if !TARGET_OS_IPHONE

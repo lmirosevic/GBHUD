@@ -1,7 +1,7 @@
 GBHUD
 ============
 
-Lightweight HUD (heads up display) for quick transient modals in iOS apps
+Lightweight HUD (heads up display) for quick transient modals in iOS & OSX apps.
 
 Usage
 ------------

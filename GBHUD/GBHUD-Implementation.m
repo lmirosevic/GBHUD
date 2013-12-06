@@ -38,7 +38,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [UIColor whiteColor]
-    static UIInterfaceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
+    static UIDeviceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
 #else
     #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[NSColor blackColor] colorWithAlphaComponent:0.7]
@@ -54,7 +54,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 @property (strong, nonatomic) GBView                            *curtainView;
 
 #if TARGET_OS_IPHONE
-@property (assign, nonatomic) UIInterfaceOrientation            privateForcedOrientation;
+@property (assign, nonatomic) UIDeviceOrientation               privateForcedOrientation;
 @property (assign, nonatomic) BOOL                              isForcedOrientationEnabled;
 #else
 @property (strong, nonatomic) NSProgressIndicator               *spinner;
@@ -561,19 +561,19 @@ static CGFloat const kDefaultTextBottomOffset = 8;
             curtainView.alpha = 0;
             
             //then scale up a bit too much
-            [UIView animateWithDuration:kAnimationDuration*0.5 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            [UIView animateWithDuration:kAnimationDuration*0.5 delay:0 options:_UIAnimationOptionsWithCurve(UIViewAnimationCurveEaseOut) animations:^{
                 newHUD.transform = CGAffineTransformMakeScale(1.15, 1.15);
                 curtainView.alpha = 1;
                 
             } completion:^(BOOL finished) {
                 
                 //bounce back
-                [UIView animateWithDuration:kAnimationDuration*0.2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                [UIView animateWithDuration:kAnimationDuration*0.2 delay:0 options:_UIAnimationOptionsWithCurve(UIViewAnimationCurveEaseInOut) animations:^{
                     newHUD.transform = CGAffineTransformMakeScale(0.95, 0.95);
                 } completion:^(BOOL finished) {
                     
                     //settle
-                    [UIView animateWithDuration:kAnimationDuration*0.25 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                    [UIView animateWithDuration:kAnimationDuration*0.25 delay:0 options:_UIAnimationOptionsWithCurve(UIViewAnimationCurveEaseInOut) animations:^{
                         newHUD.transform = CGAffineTransformMakeScale(1, 1);
                     } completion:^(BOOL finished) {
                         //noop
@@ -612,7 +612,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 //animations currently only supported on iOS
 #if TARGET_OS_IPHONE
         if (animated) {
-            [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:_UIAnimationOptionsWithCurve(UIViewAnimationCurveEaseIn) animations:^{
                 self.hudView.transform = CGAffineTransformMakeScale(0.1, 0.1);
                 self.curtainView.alpha = 0;
                 
@@ -652,6 +652,26 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #pragma mark - private util
 
 #if TARGET_OS_IPHONE
+UIViewAnimationOptions _UIAnimationOptionsWithCurve(UIViewAnimationCurve curve) {
+    switch (curve) {
+        case UIViewAnimationCurveEaseInOut: {
+            return UIViewAnimationOptionCurveEaseInOut;
+        } break;
+            
+        case UIViewAnimationCurveEaseIn: {
+            return UIViewAnimationOptionCurveEaseIn;
+        } break;
+            
+        case UIViewAnimationCurveEaseOut: {
+            return UIViewAnimationOptionCurveEaseOut;
+        } break;
+            
+        case UIViewAnimationCurveLinear: {
+            return UIViewAnimationOptionCurveLinear;
+        } break;
+    }
+}
+
 -(void)_sortOutOrientation {
     UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
     

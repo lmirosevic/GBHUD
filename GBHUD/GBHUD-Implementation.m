@@ -177,7 +177,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         self.curtainView.backgroundColor = [UIColor clearColor];
     }
 #else
-//  currently does nothing on iOS
+    //  currently does nothing on iOS
 #endif
 }
 
@@ -187,7 +187,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     
     self.curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
 #else
-//  currently do nothing on OSX
+    //  currently do nothing on OSX
 #endif
 }
 
@@ -239,7 +239,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #pragma mark - orientation
 
 #if TARGET_OS_IPHONE
--(void)enableForcedOrientation:(UIInterfaceOrientation)forcedOrientation {
+-(void)enableForcedOrientation:(UIDeviceOrientation)forcedOrientation {
     self.privateForcedOrientation = forcedOrientation;
     self.isForcedOrientationEnabled = YES;
     
@@ -251,7 +251,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #endif
 
 #pragma mark - lazy
-    
+
 #if !TARGET_OS_IPHONE
 -(NSBundle *)resourcesBundle {
     if (!_resourcesBundle) {
@@ -260,7 +260,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     
     return _resourcesBundle;
 }
-    
+
 -(NSWindow *)popupWindow {
     if (!_popupWindow) {
         _popupWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0,0,0,0) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
@@ -273,7 +273,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     return _popupWindow;
 }
 #endif
-    
+
 #pragma mark - memory
 
 +(GBHUD *)sharedHUD {
@@ -300,12 +300,13 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         self.showCurtain = kDefaultShowCurtain;
         self.curtainOpacity = kDefaultCurtainOpacity;
 #if TARGET_OS_IPHONE
+        self.privateForcedOrientation = kDefaultForcedOrientation;
         self.disableUserInteraction = kDefaultDisableUserInteraction;
         self.isForcedOrientationEnabled = NO;
 #else
         self.positioning = kDefaultPositioning;
 #endif
-
+        
         //set up listening to orientation changes
 #if TARGET_OS_IPHONE
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -346,7 +347,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text animated:(BOOL)animated {
     if (!self.isShowingHUD) {
         __block GBView *symbolView;
-   
+        
         void(^prepareView)(NSString *name) = ^(NSString *name) {
 #if TARGET_OS_IPHONE
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kGBHUDResourcesBundleName stringByAppendingPathComponent:name]]];
@@ -428,7 +429,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         NSImageView *symbolImageView = [[NSImageView alloc] init];
         [symbolImageView setImage:image];
 #endif
-    
+        
         [self showHUDWithView:symbolImageView text:text animated:animated];
     }
 }
@@ -475,7 +476,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         
         //create the curtain view and add the container to it
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
-
+        
         if (self.showCurtain) {
             curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
         }
@@ -551,8 +552,8 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         
         //set flag
         self.isShowingHUD = YES;
-
-//animations currently only supported on iOS
+        
+        //animations currently only supported on iOS
 #if TARGET_OS_IPHONE
         //animations
         if (animated) {
@@ -608,8 +609,8 @@ static CGFloat const kDefaultTextBottomOffset = 8;
             self.curtainView = nil;
             self.isShowingHUD = NO;
         };
-
-//animations currently only supported on iOS
+        
+        //animations currently only supported on iOS
 #if TARGET_OS_IPHONE
         if (animated) {
             [UIView animateWithDuration:kAnimationDuration*0.6 delay:0 options:_UIAnimationOptionsWithCurve(UIViewAnimationCurveEaseIn) animations:^{

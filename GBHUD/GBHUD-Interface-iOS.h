@@ -52,7 +52,7 @@
 -(void)showHUDWithType:(GBHUDType)type text:(NSString *)text;
 -(void)autoDismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated;
 
--(void)enableForcedOrientation:(UIInterfaceOrientation)forcedOrientation;
+-(void)enableForcedOrientation:(UIDeviceOrientation)forcedOrientation;
 -(void)disableForcedOrientation;
 
 @end

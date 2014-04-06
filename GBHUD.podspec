@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "GBHUD"
-  s.version      = "1.0.4"
-  s.source       = { :git => "https://github.com/lmirosevic/GBHUD.git", :tag => "1.0.4" }
+  s.version      = "2.0.0"
+  s.source       = { :git => "https://github.com/lmirosevic/GBHUD.git", :tag => s.version.to_s }
   s.summary      = "Lightweight HUD (heads up display) for quick transient modals in iOS & OSX apps."
   s.homepage     = "https://github.com/lmirosevic/GBHUD"
   s.license      = 'Apache License, Version 2.0'

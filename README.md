@@ -9,22 +9,22 @@ Usage
 First import header:
 
 ```objective-c
-#import "GBHUD.h"
+#import <GBHUD/GBHUD.h>
 ```
 
 Basics:
 
 ```objective-c
-GBHUD *hud = [GBHUD sharedHUD];
-    
-[hud showHUDWithType:GBHUDTypeExplosion text:@"Explosion" animated:YES];	//optionally animate
-[hud autoDismissAfterDelay:2 animated:YES];									//optionally autodismiss
+[[GBHUD sharedHUD] showHUDWithType:GBHUDTypeExplosion text:@"Explosion" animated:YES];	//optionally animate
+[[GBHUD sharedHUD] autoDismissAfterDelay:2 animated:YES];								//optionally autodismiss
 ```
 
-Demo project
+Demo projects
 ------------
 
-See: [github.com/lmirosevic/GBHUDDemo](https://github.com/lmirosevic/GBHUDDemo)
+[GBHUDDemo iOS](github.com/lmirosevic/GBHUDDemo-iOS)
+
+[GBHUDDemo OS X](github.com/lmirosevic/GBHUDDemo-OSX)
 
 Dependencies
 ------------

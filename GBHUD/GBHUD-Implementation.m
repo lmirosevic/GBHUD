@@ -38,6 +38,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [UIColor whiteColor]
+    #define kDefaultCurtainColor [UIColor blackColor]
     static UIDeviceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
 #else
     #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
@@ -171,7 +172,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     _showCurtain = showCurtain;
     
     if (showCurtain) {
-        self.curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
+        self.curtainView.backgroundColor = self.curtainColor;
     }
     else {
         self.curtainView.backgroundColor = [UIColor clearColor];
@@ -185,7 +186,17 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #if TARGET_OS_IPHONE
     _curtainOpacity = curtainOpacity;
     
-    self.curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
+    self.curtainView.backgroundColor = [self.curtainColor colorWithAlphaComponent:self.curtainOpacity];
+#else
+    //  currently do nothing on OSX
+#endif
+}
+
+-(void)setCurtainColor:(UIColor *)curtainColor {
+#if TARGET_OS_IPHONE
+    _curtainColor = curtainColor;
+    
+    self.curtainView.backgroundColor = curtainColor;
 #else
     //  currently do nothing on OSX
 #endif
@@ -300,6 +311,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         self.showCurtain = kDefaultShowCurtain;
         self.curtainOpacity = kDefaultCurtainOpacity;
 #if TARGET_OS_IPHONE
+        self.curtainColor = kDefaultCurtainColor;
         self.privateForcedOrientation = kDefaultForcedOrientation;
         self.disableUserInteraction = kDefaultDisableUserInteraction;
         self.isForcedOrientationEnabled = NO;
@@ -478,7 +490,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
         
         if (self.showCurtain) {
-            curtainView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.curtainOpacity];
+            curtainView.backgroundColor = self.curtainColor;
         }
         else {
             curtainView.backgroundColor = [UIColor clearColor];
@@ -706,6 +718,3 @@ UIViewAnimationOptions _UIAnimationOptionsWithCurve(UIViewAnimationCurve curve) 
 #endif
 
 @end
-
-
-//add an enum for no icon, and if thats the case, then make it a small HUD with text only, like the on e in the skala preview app

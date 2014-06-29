@@ -25,6 +25,7 @@
 @property (assign, nonatomic) BOOL                      disableUserInteraction;
 @property (assign, nonatomic) BOOL                      showCurtain;
 @property (assign, nonatomic) CGFloat                   curtainOpacity;
+@property (strong, nonatomic) UIColor                   *curtainColor;
 @property (assign, nonatomic) CGSize                    size;
 @property (assign, nonatomic) CGFloat                   cornerRadius;
 @property (assign, nonatomic) CGSize                    symbolSize;

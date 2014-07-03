@@ -38,7 +38,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
     #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
     #define kDefaultTextColor [UIColor whiteColor]
-    #define kDefaultCurtainColor [UIColor blackColor]
+    #define kDefaultCurtainColor [[UIColor blackColor] colorWithAlphaComponent:kDefaultCurtainOpacity]
     static UIDeviceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
 #else
     #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
@@ -172,7 +172,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     _showCurtain = showCurtain;
     
     if (showCurtain) {
-        self.curtainView.backgroundColor = self.curtainColor;
+        [self _commitCurtainColor];
     }
     else {
         self.curtainView.backgroundColor = [UIColor clearColor];
@@ -186,7 +186,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 #if TARGET_OS_IPHONE
     _curtainOpacity = curtainOpacity;
     
-    self.curtainView.backgroundColor = [self.curtainColor colorWithAlphaComponent:self.curtainOpacity];
+    [self _commitCurtainColor];
 #else
     //  currently do nothing on OSX
 #endif
@@ -195,8 +195,9 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 -(void)setCurtainColor:(UIColor *)curtainColor {
 #if TARGET_OS_IPHONE
     _curtainColor = curtainColor;
+    _curtainOpacity = CGColorGetAlpha(curtainColor.CGColor);
     
-    self.curtainView.backgroundColor = curtainColor;
+    [self _commitCurtainColor];
 #else
     //  currently do nothing on OSX
 #endif
@@ -489,13 +490,6 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //create the curtain view and add the container to it
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
         
-        if (self.showCurtain) {
-            curtainView.backgroundColor = self.curtainColor;
-        }
-        else {
-            curtainView.backgroundColor = [UIColor clearColor];
-        }
-        
         curtainView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         curtainView.userInteractionEnabled = self.disableUserInteraction;
         
@@ -509,6 +503,9 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //store in properties
         self.containerView = containerView;
         self.curtainView = curtainView;
+        
+        //commit the curtain colour, respecting the opacity, colour and on/off property
+        [self _commitCurtainColor];
         
         //sort out orientation
         [self _sortOutOrientation];
@@ -716,5 +713,19 @@ UIViewAnimationOptions _UIAnimationOptionsWithCurve(UIViewAnimationCurve curve) 
     }
 }
 #endif
+
+-(void)_commitCurtainColor {
+#if TARGET_OS_IPHONE
+    if (self.showCurtain) {
+        NSLog(@"%@", self.curtainColor);
+        NSLog(@"%f", self.curtainOpacity);//lm kill
+        
+        self.curtainView.backgroundColor = [self.curtainColor colorWithAlphaComponent:self.curtainOpacity];
+    }
+    else {
+        self.curtainView.backgroundColor = [UIColor clearColor];
+    }
+#endif
+}
 
 @end

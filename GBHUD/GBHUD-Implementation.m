@@ -717,9 +717,6 @@ UIViewAnimationOptions _UIAnimationOptionsWithCurve(UIViewAnimationCurve curve) 
 -(void)_commitCurtainColor {
 #if TARGET_OS_IPHONE
     if (self.showCurtain) {
-        NSLog(@"%@", self.curtainColor);
-        NSLog(@"%f", self.curtainOpacity);//lm kill
-        
         self.curtainView.backgroundColor = [self.curtainColor colorWithAlphaComponent:self.curtainOpacity];
     }
     else {

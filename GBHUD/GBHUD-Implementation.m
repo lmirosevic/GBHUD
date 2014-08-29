@@ -248,6 +248,14 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     self.hudView.textColor = textColor;
 }
 
+-(GBView *)targetView {
+#if TARGET_OS_IPHONE
+    return [[UIApplication sharedApplication] keyWindow];
+#else
+    return [[NSApplication sharedApplication] keyWindow].contentView;
+#endif
+}
+
 #pragma mark - orientation
 
 #if TARGET_OS_IPHONE
@@ -476,7 +484,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         
 #if TARGET_OS_IPHONE
         //fetch the target view which the entire hud view will be added to
-        UIView *targetView = [[UIApplication sharedApplication] keyWindow];
+        UIView *targetView = [self targetView];
         
         //create the container and add the hud to it
         GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds
@@ -513,7 +521,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //only show it in the window if its visible
         if (self.positioning == GBHUDPositioningCenterInMainWindow && [[[NSApplication sharedApplication] keyWindow] isVisible]) {
             //fetch the target view which the entire hud view will be added to
-            NSView *targetView = [[NSApplication sharedApplication] keyWindow].contentView;
+            NSView *targetView = [self targetView];
             
             //create the container and add the hud to it
             GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds

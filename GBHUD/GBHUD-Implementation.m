@@ -132,11 +132,21 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 
 -(void)setSize:(CGSize)size {
     _size = size;
-
+    
 #if TARGET_OS_IPHONE
     self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)*0.5+self.offset.x, (self.containerView.bounds.size.height - size.height)*0.5+self.offset.y, size.width, size.height);
 #else
-    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)/2.0, (self.containerView.bounds.size.height - size.height)/2.0, size.width, size.height);
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)/2.0, (self.containerView.bounds.size.height - self.hudView.frame.size.height)/2.0, self.hudView.frame.size.width, self.hudView.frame.size.height);
+#endif
+}
+
+-(void)setOffset:(CGPoint)offset {
+    _offset = offset;
+    
+#if TARGET_OS_IPHONE
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)*0.5+self.offset.x, (self.containerView.bounds.size.height - self.hudView.frame.size.height)*0.5+self.offset.y, self.hudView.frame.size.width, self.hudView.frame.size.height);
+#else
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)/2.0, (self.containerView.bounds.size.height - self.hudView.frame.size.height)/2.0, self.hudView.frame.size.width, self.hudView.frame.size.height);
 #endif
 }
 
@@ -497,7 +507,6 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         
         //center the hud in the container
         newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5+self.offset.x, (containerView.frame.size.height-newHUD.frame.size.height)*0.5+self.offset.y, newHUD.frame.size.width, newHUD.frame.size.height);
-        
         
         //create the curtain view and add the container to it
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];

@@ -132,8 +132,12 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 
 -(void)setSize:(CGSize)size {
     _size = size;
-    
+
+#if TARGET_OS_IPHONE
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)*0.5+self.offset.x, (self.containerView.bounds.size.height - size.height)*0.5+self.offset.y, size.width, size.height);
+#else
     self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)/2.0, (self.containerView.bounds.size.height - size.height)/2.0, size.width, size.height);
+#endif
 }
 
 -(void)setCornerRadius:(CGFloat)cornerRadius {
@@ -492,7 +496,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         [containerView addSubview:newHUD];
         
         //center the hud in the container
-        newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
+        newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5+self.offset.x, (containerView.frame.size.height-newHUD.frame.size.height)*0.5+self.offset.y, newHUD.frame.size.width, newHUD.frame.size.height);
         
         
         //create the curtain view and add the container to it

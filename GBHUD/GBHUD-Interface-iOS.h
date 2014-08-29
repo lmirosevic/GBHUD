@@ -31,6 +31,7 @@
 @property (assign, nonatomic) CGSize                    symbolSize;
 @property (assign, nonatomic) CGFloat                   symbolTopOffset;
 @property (assign, nonatomic) CGFloat                   textBottomOffset;
+@property (assign, nonatomic) CGPoint                   offset;
 @property (strong, nonatomic) UIFont                    *font;
 @property (strong, nonatomic) UIColor                   *backdropColor;
 @property (strong, nonatomic) UIColor                   *textColor;

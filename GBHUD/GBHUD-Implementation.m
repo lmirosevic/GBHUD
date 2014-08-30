@@ -133,7 +133,21 @@ static CGFloat const kDefaultTextBottomOffset = 8;
 -(void)setSize:(CGSize)size {
     _size = size;
     
-    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)/2.0, (self.containerView.bounds.size.height - size.height)/2.0, size.width, size.height);
+#if TARGET_OS_IPHONE
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - size.width)*0.5+self.offset.x, (self.containerView.bounds.size.height - size.height)*0.5+self.offset.y, size.width, size.height);
+#else
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)/2.0, (self.containerView.bounds.size.height - self.hudView.frame.size.height)/2.0, self.hudView.frame.size.width, self.hudView.frame.size.height);
+#endif
+}
+
+-(void)setOffset:(CGPoint)offset {
+    _offset = offset;
+    
+#if TARGET_OS_IPHONE
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)*0.5+self.offset.x, (self.containerView.bounds.size.height - self.hudView.frame.size.height)*0.5+self.offset.y, self.hudView.frame.size.width, self.hudView.frame.size.height);
+#else
+    self.hudView.frame = CGRectMake((self.containerView.bounds.size.width - self.hudView.frame.size.width)/2.0, (self.containerView.bounds.size.height - self.hudView.frame.size.height)/2.0, self.hudView.frame.size.width, self.hudView.frame.size.height);
+#endif
 }
 
 -(void)setCornerRadius:(CGFloat)cornerRadius {
@@ -246,6 +260,14 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     _textColor = textColor;
     
     self.hudView.textColor = textColor;
+}
+
+-(GBView *)targetView {
+#if TARGET_OS_IPHONE
+    return [[UIApplication sharedApplication] keyWindow];
+#else
+    return [[NSApplication sharedApplication] keyWindow].contentView;
+#endif
 }
 
 #pragma mark - orientation
@@ -476,7 +498,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         
 #if TARGET_OS_IPHONE
         //fetch the target view which the entire hud view will be added to
-        UIView *targetView = [[UIApplication sharedApplication] keyWindow];
+        UIView *targetView = [self targetView];
         
         //create the container and add the hud to it
         GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds
@@ -484,8 +506,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         [containerView addSubview:newHUD];
         
         //center the hud in the container
-        newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5, (containerView.frame.size.height-newHUD.frame.size.height)*0.5, newHUD.frame.size.width, newHUD.frame.size.height);
-        
+        newHUD.frame = CGRectMake((containerView.frame.size.width-newHUD.frame.size.width)*0.5+self.offset.x, (containerView.frame.size.height-newHUD.frame.size.height)*0.5+self.offset.y, newHUD.frame.size.width, newHUD.frame.size.height);
         
         //create the curtain view and add the container to it
         GBView *curtainView = [[GBView alloc] initWithFrame:targetView.bounds];
@@ -513,7 +534,7 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         //only show it in the window if its visible
         if (self.positioning == GBHUDPositioningCenterInMainWindow && [[[NSApplication sharedApplication] keyWindow] isVisible]) {
             //fetch the target view which the entire hud view will be added to
-            NSView *targetView = [[NSApplication sharedApplication] keyWindow].contentView;
+            NSView *targetView = [self targetView];
             
             //create the container and add the hud to it
             GBView *containerView = [[GBView alloc] initWithFrame:targetView.bounds];//this keeps the size of the current orientation throughout but it doesnt matter cuz it doesnt clip bounds

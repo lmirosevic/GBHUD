@@ -24,62 +24,64 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat const kAnimationDuration = 0.2;
-static BOOL const kDefaultDisableUserInteraction = YES;
-static CGFloat const kDefaultCurtainOpacity = 0.3;
-static BOOL const kDefaultShowCurtain = YES;
-static CGSize const kDefaultSize = (CGSize){110, 110};
-static CGFloat const kDefaultCornerRadius = 8;
-static CGSize const kDefaultSymbolSize = (CGSize){60, 60};
-static CGFloat const kDefaultSymbolTopOffset = 16;
-static CGFloat const kDefaultTextBottomOffset = 8;
+#if TARGET_OS_IPHONE
+static CGFloat const kAnimationDuration =                           0.2;
+static BOOL const kDefaultDisableUserInteraction =                  YES;
+static CGFloat const kDefaultCurtainOpacity =                       0.3;
+static BOOL const kDefaultShowCurtain =                             YES;
+#endif
+static CGSize const kDefaultSize =                                  (CGSize){110, 110};
+static CGFloat const kDefaultCornerRadius =                         8;
+static CGSize const kDefaultSymbolSize =                            (CGSize){60, 60};
+static CGFloat const kDefaultSymbolTopOffset =                      16;
+static CGFloat const kDefaultTextBottomOffset =                     8;
 
 #if TARGET_OS_IPHONE
-    #define kDefaultFont [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
-    #define kDefaultBackdropColor [[UIColor blackColor] colorWithAlphaComponent:0.7]
-    #define kDefaultTextColor [UIColor whiteColor]
-    #define kDefaultCurtainColor [[UIColor blackColor] colorWithAlphaComponent:kDefaultCurtainOpacity]
-    static UIDeviceOrientation const kDefaultForcedOrientation = UIDeviceOrientationPortrait;
+    #define kDefaultFont                                            [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
+    #define kDefaultBackdropColor                                   [[UIColor blackColor] colorWithAlphaComponent:0.7]
+    #define kDefaultTextColor                                       [UIColor whiteColor]
+    #define kDefaultCurtainColor                                    [[UIColor blackColor] colorWithAlphaComponent:kDefaultCurtainOpacity]
+    static UIDeviceOrientation const kDefaultForcedOrientation =    UIDeviceOrientationPortrait;
 #else
-    #define kDefaultFont [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
-    #define kDefaultBackdropColor [[NSColor blackColor] colorWithAlphaComponent:0.7]
-    #define kDefaultTextColor [NSColor whiteColor]
-    static GBHUDPositioning const kDefaultPositioning = GBHUDPositioningCenterInMainWindow;
+    #define kDefaultFont                                            [NSFont fontWithName:@"HelveticaNeue-Bold" size:12]
+    #define kDefaultBackdropColor                                   [[NSColor blackColor] colorWithAlphaComponent:0.7]
+    #define kDefaultTextColor                                       [NSColor whiteColor]
+    static GBHUDPositioning const kDefaultPositioning =             GBHUDPositioningCenterInMainWindow;
 #endif
 
 @interface GBHUD()
 
-@property (assign, nonatomic, readwrite) BOOL                   isShowingHUD;
-@property (strong, nonatomic) GBHUDView                         *hudView;
-@property (strong, nonatomic) GBView                            *containerView;
-@property (strong, nonatomic) GBView                            *curtainView;
+@property (assign, nonatomic, readwrite) BOOL                       isShowingHUD;
+@property (strong, nonatomic) GBHUDView                             *hudView;
+@property (strong, nonatomic) GBView                                *containerView;
+@property (strong, nonatomic) GBView                                *curtainView;
 
 #if TARGET_OS_IPHONE
-@property (assign, nonatomic) UIDeviceOrientation               privateForcedOrientation;
-@property (assign, nonatomic) BOOL                              isForcedOrientationEnabled;
+@property (assign, nonatomic) UIDeviceOrientation                   privateForcedOrientation;
+@property (assign, nonatomic) BOOL                                  isForcedOrientationEnabled;
 #else
-@property (strong, nonatomic) NSProgressIndicator               *spinner;
-@property (strong, nonatomic, readonly) NSBundle                *resourcesBundle;
-@property (strong, nonatomic,readonly) NSWindow                 *popupWindow;
+@property (strong, nonatomic) NSProgressIndicator                   *spinner;
+@property (strong, nonatomic, readonly) NSBundle                    *resourcesBundle;
+@property (strong, nonatomic,readonly) NSWindow                     *popupWindow;
 #endif
 
 @end
 
 
 @implementation GBHUD {
-    CGSize                  _size;
-    CGFloat                 _cornerRadius;
-    CGSize                  _symbolSize;
-    CGFloat                 _symbolTopOffset;
-    CGFloat                 _textBottomOffset;
+    CGSize                                                          _size;
+    CGFloat                                                         _cornerRadius;
+    CGSize                                                          _symbolSize;
+    CGFloat                                                         _symbolTopOffset;
+    CGFloat                                                         _textBottomOffset;
     
-    GBFont                  *_font;
-    GBColor                 *_backdropColor;
-    GBColor                 *_textColor;
+    GBFont                                                          *_font;
+    GBColor                                                         *_backdropColor;
+    GBColor                                                         *_textColor;
     
 #if !TARGET_OS_IPHONE
-    NSBundle                *_resourcesBundle;
-    NSWindow                *_popupWindow;
+    NSBundle                                                        *_resourcesBundle;
+    NSWindow                                                        *_popupWindow;
 #endif
 }
 
@@ -167,8 +169,8 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     self.hudView.labelBottomOffset = textBottomOffset;
 }
 
--(void)setShowCurtain:(BOOL)showCurtain {
 #if TARGET_OS_IPHONE
+-(void)setShowCurtain:(BOOL)showCurtain {
     _showCurtain = showCurtain;
     
     if (showCurtain) {
@@ -177,31 +179,25 @@ static CGFloat const kDefaultTextBottomOffset = 8;
     else {
         self.curtainView.backgroundColor = [UIColor clearColor];
     }
-#else
-    //  currently does nothing on iOS
-#endif
 }
+#endif
 
--(void)setCurtainOpacity:(CGFloat)curtainOpacity {
 #if TARGET_OS_IPHONE
+-(void)setCurtainOpacity:(CGFloat)curtainOpacity {
     _curtainOpacity = curtainOpacity;
     
     [self _commitCurtainColor];
-#else
-    //  currently do nothing on OSX
-#endif
 }
+#endif
 
--(void)setCurtainColor:(UIColor *)curtainColor {
 #if TARGET_OS_IPHONE
+-(void)setCurtainColor:(UIColor *)curtainColor {
     _curtainColor = curtainColor;
     _curtainOpacity = CGColorGetAlpha(curtainColor.CGColor);
     
     [self _commitCurtainColor];
-#else
-    //  currently do nothing on OSX
-#endif
 }
+#endif
 
 -(GBFont *)font {
     if (!_font) {
@@ -309,9 +305,9 @@ static CGFloat const kDefaultTextBottomOffset = 8;
         self.font = nil;
         self.backdropColor = nil;
         self.textColor = nil;
+#if TARGET_OS_IPHONE
         self.showCurtain = kDefaultShowCurtain;
         self.curtainOpacity = kDefaultCurtainOpacity;
-#if TARGET_OS_IPHONE
         self.curtainColor = kDefaultCurtainColor;
         self.privateForcedOrientation = kDefaultForcedOrientation;
         self.disableUserInteraction = kDefaultDisableUserInteraction;

@@ -22,9 +22,9 @@ Basics:
 Demo projects
 ------------
 
-[GBHUDDemo iOS](github.com/lmirosevic/GBHUDDemo-iOS)
+[GBHUDDemo iOS](https://github.com/lmirosevic/GBHUDDemo-iOS)
 
-[GBHUDDemo OS X](github.com/lmirosevic/GBHUDDemo-OSX)
+[GBHUDDemo OS X](https://github.com/lmirosevic/GBHUDDemo-OSX)
 
 Dependencies
 ------------

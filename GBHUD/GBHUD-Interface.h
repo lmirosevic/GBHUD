@@ -18,7 +18,7 @@
 //  limitations under the License.
 
 #import "GBHUDTypes.h"
-
+#if TARGET_OS_IPHONE
 @interface GBHUD : NSObject
 
 @property (assign, nonatomic, readonly) BOOL            isShowingHUD;
@@ -57,3 +57,32 @@
 -(void)disableForcedOrientation;
 
 @end
+#else
+typedef enum {
+    GBHUDPositioningCenterInMainWindow,
+    GBHUDPositioningCenterOnMainScreen,
+} GBHUDPositioning;
+
+@interface GBHUD : NSObject
+
+@property (assign, nonatomic, readonly) BOOL            isShowingHUD;
+@property (assign, nonatomic) CGSize                    size;
+@property (assign, nonatomic) CGFloat                   cornerRadius;
+@property (assign, nonatomic) CGSize                    symbolSize;
+@property (assign, nonatomic) CGFloat                   symbolTopOffset;
+@property (assign, nonatomic) CGFloat                   textBottomOffset;
+@property (strong, nonatomic) NSFont                    *font;
+@property (strong, nonatomic) NSColor                   *backdropColor;
+@property (strong, nonatomic) NSColor                   *textColor;
+@property (assign, nonatomic) GBHUDPositioning          positioning;
+
++(GBHUD *)sharedHUD;
+
+-(void)showHUDWithType:(GBHUDType)type text:(NSString *)text;
+-(void)showHUDWithImage:(NSImage *)image text:(NSString *)text;
+-(void)showHUDWithView:(NSView *)symbolView text:(NSString *)text;
+-(void)dismissHUD;
+-(void)autoDismissAfterDelay:(NSTimeInterval)delay;
+
+@end
+#endif

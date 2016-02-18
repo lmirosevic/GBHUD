@@ -40,7 +40,6 @@
 		8AA7A57A165CBB08005601FC /* GBHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7A579165CBB08005601FC /* GBHUDBackgroundView.m */; };
 		8AA7A5C7165D051C005601FC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA7A5C6165D051C005601FC /* CoreFoundation.framework */; };
 		8AAD2498173FDCBA002C2224 /* GBHUDShims.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD2497173FDC30002C2224 /* GBHUDShims.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8AAD24CB173FF422002C2224 /* GBHUD-Interface-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AAD24CA173FF422002C2224 /* GBHUD-Interface-OSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ACDEE8A173FCF4A00795FB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACDEE89173FCF4A00795FB7 /* Cocoa.framework */; };
 		8ACDEE9D173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8ACDEE9C173FD05A00795FB7 /* GBHUD-OSX-Prefix.pch */; };
 		8ACDEE9E173FD18500795FB7 /* GBHUD-Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */; };
@@ -96,8 +95,7 @@
 		8AA7A5CA165D051C005601FC /* GBHUDResources-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBHUDResources-iOS-Info.plist"; sourceTree = "<group>"; };
 		8AA7A5CE165D051C005601FC /* GBHUDResources-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUDResources-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		8AAD2497173FDC30002C2224 /* GBHUDShims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBHUDShims.h; sourceTree = "<group>"; };
-		8AAD24C9173FF3EF002C2224 /* GBHUD-Interface-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Interface-iOS.h"; sourceTree = "<group>"; };
-		8AAD24CA173FF422002C2224 /* GBHUD-Interface-OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Interface-OSX.h"; sourceTree = "<group>"; };
+		8AAD24C9173FF3EF002C2224 /* GBHUD-Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBHUD-Interface.h"; sourceTree = "<group>"; };
 		8ACDEE88173FCF4A00795FB7 /* GBHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACDEE89173FCF4A00795FB7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		8ACDEE8C173FCF4A00795FB7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -223,8 +221,7 @@
 				8ACDEEA7173FD83B00795FB7 /* GBHUDTypes.h */,
 				8AAD2497173FDC30002C2224 /* GBHUDShims.h */,
 				8A4CE3B2165CB7E30043DF4A /* GBHUD.h */,
-				8AAD24C9173FF3EF002C2224 /* GBHUD-Interface-iOS.h */,
-				8AAD24CA173FF422002C2224 /* GBHUD-Interface-OSX.h */,
+				8AAD24C9173FF3EF002C2224 /* GBHUD-Interface.h */,
 				8A4CE3B4165CB7E30043DF4A /* GBHUD-Implementation.m */,
 				8AA7A574165CBAEF005601FC /* GBHUDView.h */,
 				8AA7A575165CBAEF005601FC /* GBHUDView.m */,
@@ -276,7 +273,6 @@
 				8ACDEEA3173FD19200795FB7 /* GBHUDBackgroundView.h in Headers */,
 				8ACDEEA8173FD83B00795FB7 /* GBHUDTypes.h in Headers */,
 				8AAD2498173FDCBA002C2224 /* GBHUDShims.h in Headers */,
-				8AAD24CB173FF422002C2224 /* GBHUD-Interface-OSX.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
